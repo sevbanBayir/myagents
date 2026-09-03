@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+#
+# check-staleness — flag docs whose watched source files changed since the doc
+# was last verified.
+#
+# A doc opts in via frontmatter:
+#
+#   ---
+#   name: drizzle-migrations
+#   watch_root: ~/code/api          # optional; defaults to the doc's own directory
+#   watch:
+#     - packages/db/schema.ts
+#     - drizzle.config.ts
+#   verified: 2026-08-14
+#   checksum: a1b2c3d4e5f6
+#   ---
+#
+# Docs with no `watch:` block are ignored entirely.
+#
+#   ./bin/check-staleness              check docs/ and skills/
+#   ./bin/check-staleness docs/foo.md  check one file
+#   ./bin/check-staleness --bless PATH mark PATH reviewed (refresh checksum + date)
+#
+# Exits 1 if anything is stale, so it works as a pre-commit hook or CI step.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck source=./_frontmatter.sh
+. "$ROOT/bin/_frontmatter.sh"
+
+BLESS=0
+if [ "${1:-}" = "--bless" ]; then BLESS=1; shift; fi
+if [ $# -eq 0 ]; then set -- "$ROOT/docs" "$ROOT/skills"; fi
+
+stale=0
+checked=0
+
+check_one() {
+  local doc="$1"
+  local watched root acc missing f p now recorded
+
+  watched="$(_fm_list watch "$doc")"
+  if [ -z "$watched" ]; then return 0; fi
+
+  root="$(_fm_scalar watch_root "$doc")"
+  if [ -z "$root" ]; then root="$(dirname "$doc")"; fi
+  root="${root/#\~/$HOME}"
+
+  acc=""
+  missing=""
+  while IFS= read -r p; do
+    if [ -z "$p" ]; then continue; fi
+    case "$p" in
+      /*) f="$p" ;;
+      *)  f="$root/$p" ;;
+    esac
+    if [ -f "$f" ]; then
+      acc="$acc$(_sha < "$f")"
+    else
+      missing="$missing $p"
+    fi
+  done <<< "$watched"
+
+  checked=$((checked + 1))
+  now="$(printf '%s' "$acc" | _sha | cut -c1-12)"
+  recorded="$(_fm_scalar checksum "$doc")"
+
+  if [ -n "$missing" ]; then
+    printf '  ?  %s\n     watched path(s) not found under %s:%s\n' "$doc" "$root" "$missing"
+    stale=1
+    return 0
+  fi
+
+  if [ "$BLESS" = "1" ]; then
+    _fm_set_meta "$doc" "$now" "$(date +%F)"
+    printf '  ok %s  blessed (%s, %s)\n' "$doc" "$now" "$(date +%F)"
+    return 0
+  fi
+
+  if [ -z "$recorded" ]; then
+    printf '  ?  %s\n     never verified. Read it, then: just bless %s\n' "$doc" "$doc"
+    stale=1
+  elif [ "$recorded" != "$now" ]; then
+    printf '  x  %s\n     source changed since %s (%s -> %s)\n     Read it, then: just bless %s\n' \
+      "$doc" "$(_fm_scalar verified "$doc")" "$recorded" "$now" "$doc"
+    stale=1
+  else
+    printf '  ok %s\n' "$doc"
+  fi
+}
+
+for target in "$@"; do
+  if [ -f "$target" ]; then
+    check_one "$target"
+  elif [ -d "$target" ]; then
+    while IFS= read -r doc; do
+      check_one "$doc"
+    done < <(_list_md "$target")
+  else
+    echo "no such path: $target" >&2
+    exit 2
+  fi
+done
+
+echo
+if [ "$checked" -eq 0 ]; then
+  echo "No docs declare a watch: block yet. Nothing to check."
+  exit 0
+fi
+if [ "$stale" -ne 0 ]; then
+  echo "$checked doc(s) checked - some need attention (see above)."
+  exit 1
+fi
+echo "$checked doc(s) checked - all in sync."

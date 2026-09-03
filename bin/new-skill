@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# new-skill <name> — scaffold skills/<name>/SKILL.md
+#
+# Kept as a script rather than an inline `just` recipe so the heredoc indentation
+# is unambiguous and this can be tested on its own.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+name="${1:-}"
+
+if [ -z "$name" ]; then
+  echo "usage: new-skill <name>" >&2
+  exit 2
+fi
+
+case "$name" in
+  *[!a-z0-9-]*)
+    echo "skill name must be lowercase letters, digits and dashes: got '$name'" >&2
+    exit 2 ;;
+esac
+
+dir="$ROOT/skills/$name"
+if [ -e "$dir" ]; then
+  echo "$dir already exists" >&2
+  exit 1
+fi
+
+mkdir -p "$dir"
+cat > "$dir/SKILL.md" <<EOF
+---
+name: $name
+description: WHAT this does, and WHEN to use it. This sentence is the only thing an agent reads when deciding whether to load the skill, so name the concrete triggers - file types, commands, error messages, phases of work.
+---
+
+# $name
+
+## When this applies
+
+-
+
+## Steps
+
+1.
+
+## Gotchas
+
+-
+EOF
+
+echo "created skills/$name/SKILL.md"
+echo "It is live in every agent immediately - no need to run 'just sync'."
+[ -n "${EDITOR:-}" ] && exec "$EDITOR" "$dir/SKILL.md"
+exit 0

@@ -1,0 +1,8 @@
+.DS_Store
+build/
+*.bak
+
+# Never commit secrets. MCP env vars belong in your shell profile or a
+# password manager, referenced as ${VAR} in mcp/servers.json.
+.env
+*.local.json

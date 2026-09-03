@@ -1,0 +1,16 @@
+{
+  "_comment": "Canonical record of the MCP servers you run. Not auto-installed — see the MCP section in bin/sync for why. Use this to replay your setup on a new machine.",
+  "mcpServers": {
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "${FIGMA_API_KEY}"
+      }
+    },
+    "atlassian": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.atlassian.com/v1/sse"]
+    }
+  }
+}

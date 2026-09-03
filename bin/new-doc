@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# new-doc <name> — scaffold docs/<name>.md from docs/_template.md
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+name="${1:-}"
+
+if [ -z "$name" ]; then
+  echo "usage: new-doc <name>" >&2
+  exit 2
+fi
+
+case "$name" in
+  _*) echo "names starting with _ are reserved for templates" >&2; exit 2 ;;
+  *[!a-z0-9-]*)
+    echo "doc name must be lowercase letters, digits and dashes: got '$name'" >&2
+    exit 2 ;;
+esac
+
+f="$ROOT/docs/$name.md"
+if [ -e "$f" ]; then
+  echo "$f already exists" >&2
+  exit 1
+fi
+
+sed "s/^name: .*/name: $name/" "$ROOT/docs/_template.md" > "$f"
+
+echo "created docs/$name.md"
+echo "Fill in watch_root and watch, then run: just bless docs/$name.md"
+[ -n "${EDITOR:-}" ] && exec "$EDITOR" "$f"
+exit 0
