@@ -97,6 +97,7 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | Source | Skills | License |
 | --- | --- | --- |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | the 18 `engineering` and 7 `productivity` skills | MIT |
+| `skills.zip` (Android/KMP architecture skills) | the 8 `android-*` skills | not stated |
 
 Upstream groups them into category folders. This repo keeps `skills/` flat, so the
 category level is dropped on copy. To update, re-copy the folders from upstream.
