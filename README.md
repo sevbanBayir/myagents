@@ -88,3 +88,20 @@ with each tool's own CLI and keep this file as the list you replay on a new mach
 
 Secrets never go in this repo. Reference them as `${VAR}` and export from your shell
 profile or a password manager.
+
+## Vendored skills
+
+Some skills are copied in from other people's repos, not written here. Each keeps the
+upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the file tree.
+
+| Source | Skills | License |
+| --- | --- | --- |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | the 18 `engineering` and 7 `productivity` skills | MIT |
+
+Upstream groups them into category folders. This repo keeps `skills/` flat, so the
+category level is dropped on copy. To update, re-copy the folders from upstream.
+Run `/setup-matt-pocock-skills` once per repository before you use the rest.
+
+One local deviation: upstream `code-review` is renamed to `mp-code-review`, because
+Claude Code ships a built-in skill under the original name. Its three cross-references
+in `ask-matt`, `implement` and `tdd` are rewritten to match. Re-apply this on update.
