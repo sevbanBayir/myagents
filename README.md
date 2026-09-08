@@ -97,7 +97,13 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | Source | Skills | License |
 | --- | --- | --- |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | the 18 `engineering` and 7 `productivity` skills | MIT |
-| `skills.zip` (Android/KMP architecture skills) | the 8 `android-*` skills | not stated |
+| Philipp Lackner (Android/KMP architecture skills, shipped as `skills.zip`) | the 7 `android-*` skills | not stated |
+| [android/skills](https://github.com/android/skills) | `agp-9-upgrade`, `adaptive`, `edge-to-edge`, `migrate-xml-views-to-jetpack-compose`, `navigation-3`, `navigation-event`, `styles`, `testing-setup` | Apache 2.0 |
+| [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
+| [AminBlg/SimpleEnglish](https://github.com/AminBlg/SimpleEnglish) | `simple-english`, and the matching `output-styles/simple-english.md` | MIT |
+
+Every skill that the table does not list is written here. Today that is `docs-sync`
+alone, and it carries no `LICENSE` for that reason.
 
 Upstream groups them into category folders. This repo keeps `skills/` flat, so the
 category level is dropped on copy. To update, re-copy the folders from upstream.
@@ -106,3 +112,45 @@ Run `/setup-matt-pocock-skills` once per repository before you use the rest.
 One local deviation: upstream `code-review` is renamed to `mp-code-review`, because
 Claude Code ships a built-in skill under the original name. Its three cross-references
 in `ask-matt`, `implement` and `tdd` are rewritten to match. Re-apply this on update.
+
+The `android/skills` set keeps its upstream names, so an update is a plain re-copy. Their
+`LICENSE.txt` is the repo-root Apache 2.0 file, because each `SKILL.md` points at that
+filename. The official installer is `android skills add <name> --project=.`, but it writes
+per-agent directories instead of this repo, so copy the folders by hand.
+
+One overlap remains with the `android-*` set: `testing-setup` sets up test
+infrastructure, while `android-testing` covers how to write the tests. The old
+`android-navigation` skill (type-safe Navigation 2) was deleted in favor of
+`navigation-3`.
+
+### The compose-preview CLI
+
+The `yschimke/skills` set drives a `compose-preview` CLI. The CLI is a JVM program from
+[yschimke/compose-ai-tools](https://github.com/yschimke/compose-ai-tools), so it belongs on
+the machine and not in this repo. Install it per machine:
+
+```sh
+SKILL_DIR="$HOME/.local/share/compose-preview" \
+  curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh \
+  | bash -s -- --cli-only
+```
+
+Two details make that command different from the one upstream advertises:
+
+- `--cli-only` stops the installer from writing its own copy of the skill content, and from
+  symlinking that copy into `~/.claude/skills`, which is already this repo.
+- `SKILL_DIR` moves the unpacked CLI out of the installer's default,
+  `~/.agents/skills/compose-preview`. That default collides with this repo on a machine
+  that clones it to `~/.agents`, as the Install section above suggests.
+
+The result is `~/.local/bin/compose-preview`, which must be on your PATH. The CLI needs
+Java 17 or later, from PATH or from `JAVA_HOME`. Android Studio's bundled runtime works:
+`export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"`.
+
+Do not run `compose-preview update` to upgrade. It pipes the installer without
+`--cli-only`, so it writes the second skill copy that the flag exists to prevent. Re-run
+the command above instead, and re-copy the skill folders from upstream.
+
+One local deviation lives inside the vendored content: `skills/compose-preview/SKILL.md`
+carries a short note with the two flags above, because an agent that reads the skill never
+reads this file. Re-apply that note on update.

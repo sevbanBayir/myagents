@@ -2,6 +2,8 @@
 name: android-di-koin
 description: |
   Koin dependency injection setup for Android/KMP - module definitions per layer, ViewModel injection, assembling modules in :app, and koinViewModel() in composables. Use this skill whenever setting up Koin, defining a DI module, providing a repository or ViewModel, injecting a dependency, or wiring modules in the Application class. Trigger on phrases like "set up Koin", "add a Koin module", "inject a dependency", "DI module", "koinViewModel", "provide a ViewModel", "startKoin", or "single/viewModel/factory".
+metadata:
+  author: Philipp Lackner
 ---
  
 # Android / KMP Dependency Injection (Koin)
