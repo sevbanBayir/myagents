@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# lint-paths — one spelling of this repo's path, everywhere.
+#
+# The canonical clone path is ~/myagents. It matches the GitHub repo name, so a
+# plain `git clone` produces it, and it does not collide with the compose-preview
+# installer, whose default target is $HOME/.agents/skills/compose-preview.
+#
+# Convention:
+#   ~/.agents        banned in first-party files. It is a path we do not use.
+#   $HOME/.agents    allowed. It quotes another tool's own default, verbatim.
+#
+# Vendored skills are exempt. Upstream code may name whatever paths it likes.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+# First-party files only. Everything under skills/ is vendored except docs-sync.
+OWN=(AGENTS.md README.md justfile bin docs mcp skills/docs-sync)
+
+# --exclude keeps this script's own header from matching the pattern it documents.
+if hits="$(grep -rn --exclude=lint-paths -- '~/\.agents' "${OWN[@]}" 2>/dev/null)"; then
+  printf 'Non-canonical repo path. Use ~/myagents, or $HOME/.agents to quote\n' >&2
+  printf 'another tool default. See the header of bin/lint-paths.\n\n%s\n' "$hits" >&2
+  exit 1
+fi
+
+echo "  ok  no non-canonical repo paths in first-party files"

@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+#
+# doctor — report which tools this setup needs, and which are present.
+#
+# Reports only. It installs nothing. Exits 1 if any required tool is missing.
+#
+# Two groups, two different reasons to be required:
+#
+#   Scripts   bin/ calls these directly. Without them the justfile breaks.
+#   Agents    AGENTS.md tells every agent, in every repo, that these are
+#             installed and must be preferred over the older equivalents.
+#             A missing one is worse than an absent feature, because the
+#             agent follows an always-loaded instruction that then fails.
+#
+# yq needs the right flavor. AGENTS.md names `yq --front-matter=extract`,
+# which is mikefarah's Go yq. Debian's `yq` package is kislyuk's Python one
+# and has no such flag, so a present binary is not proof of a working tool.
+
+set -euo pipefail
+
+missing=0
+
+report() {
+  if command -v "$1" >/dev/null 2>&1; then
+    printf '  ok   %-8s %s\n' "$1" "$(command -v "$1")"
+    return 0
+  fi
+  printf '  !!   %-8s MISSING. Needed for: %s\n' "$1" "$2" >&2
+  missing=1
+  return 1
+}
+
+echo
+echo "Required by bin/"
+report git  "cloning this repo, and re-copying vendored skills"
+report just "every entry point in the justfile"
+
+if command -v sha256sum >/dev/null 2>&1; then
+  printf '  ok   %-8s %s\n' "sha256" "$(command -v sha256sum)"
+elif command -v shasum >/dev/null 2>&1; then
+  printf '  ok   %-8s %s\n' "sha256" "$(command -v shasum)"
+else
+  printf '  !!   %-8s MISSING. No sha256sum and no shasum, so just check cannot hash.\n' "sha256" >&2
+  missing=1
+fi
+
+echo
+echo "Promised to agents by AGENTS.md"
+report fd "finding files by name or path. bin/ falls back to find, agents do not"
+report rg "searching file contents"
+report jq "reading and transforming JSON"
+
+if report yq "YAML, including markdown frontmatter"; then
+  # Presence is not enough. Prove the documented flag actually works.
+  if printf -- '---\n_probe: ok\n---\nbody\n' \
+       | yq --front-matter=extract -r '._probe' 2>/dev/null | grep -qx ok; then
+    printf '       %s\n' "$(yq --version 2>&1)"
+  else
+    printf '  !!   %-8s WRONG FLAVOR. --front-matter=extract does not work.\n' "yq" >&2
+    printf '       AGENTS.md names mikefarah/yq. This looks like kislyuk/yq (pip).\n' >&2
+    printf '       Install the Go one: brew install yq, or from github.com/mikefarah/yq/releases\n' >&2
+    missing=1
+  fi
+fi
+
+if report gh "anything GitHub: PRs, issues, CI logs, releases"; then
+  # Installed but not logged in is the normal state of a new machine.
+  if gh auth status >/dev/null 2>&1; then
+    printf '       authenticated\n'
+  else
+    printf '  !!   %-8s NOT AUTHENTICATED. Run: gh auth login\n' "gh" >&2
+    missing=1
+  fi
+fi
+
+# Debian and Ubuntu name the binary fdfind. Without this note you never learn why.
+if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
+  echo "       note: fdfind is present but fd is not. Add a symlink named fd on your PATH."
+fi
+
+echo
+if [ "$missing" -ne 0 ]; then
+  echo "Setup incomplete. Run: just bootstrap" >&2
+  exit 1
+fi
+echo "All required tools present."

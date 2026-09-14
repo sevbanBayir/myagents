@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#
+# bootstrap — the one command a new machine needs after cloning.
+#
+# Installs what is missing, reports the result, then wires this repo into each
+# agent's expected paths. Safe to re-run: it installs nothing already present.
+#
+# DRY_RUN=1 ./bin/bootstrap   names the packages and shows what sync would do,
+#                             without installing or linking anything.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DRY_RUN="${DRY_RUN:-0}"
+
+# Package names differ per manager. fd is fd on brew and fd-find on apt.
+#
+# yq is deliberately absent from APT_PKGS. Debian's `yq` package is kislyuk's
+# Python one, which has no --front-matter=extract. AGENTS.md names that flag, so
+# apt would install a binary that fails the very thing it is promised for.
+# bin/doctor checks the flavor and prints where to get the Go one.
+BREW_PKGS="just fd ripgrep jq yq gh"
+APT_PKGS="just fd-find ripgrep jq gh"
+
+# binary_for <package> — the command a package provides, when the names differ.
+binary_for() {
+  case "$1" in
+    ripgrep)    echo rg ;;
+    fd-find)    echo fd ;;
+    *)          echo "$1" ;;
+  esac
+}
+
+# missing_from <package list> — packages whose binary is not on PATH.
+missing_from() {
+  local want="" p
+  for p in $1; do
+    command -v "$(binary_for "$p")" >/dev/null 2>&1 || want="$want $p"
+  done
+  printf '%s' "${want# }"
+}
+
+echo
+if command -v brew >/dev/null 2>&1; then
+  echo "Homebrew"
+  pkgs="$(missing_from "$BREW_PKGS")"
+  cmd=(brew install)
+elif command -v apt-get >/dev/null 2>&1; then
+  echo "apt"
+  pkgs="$(missing_from "$APT_PKGS")"
+  cmd=(sudo apt-get install -y)
+else
+  echo "No brew and no apt on this machine." >&2
+  echo "Install these by hand, then re-run: just, fd, ripgrep" >&2
+  exit 1
+fi
+
+if [ -z "$pkgs" ]; then
+  echo "  nothing to install"
+elif [ "$DRY_RUN" = "1" ]; then
+  echo "  would install: $pkgs"
+else
+  echo "  installing: $pkgs"
+  if [ "${cmd[0]}" = "sudo" ]; then sudo apt-get update; fi
+  "${cmd[@]}" $pkgs
+fi
+
+# doctor exits 1 on an unauthenticated gh, which is the normal state of a fresh
+# machine. Report it, then still wire up the paths. The last line repeats it.
+doctor_ok=0
+"$ROOT/bin/doctor" || doctor_ok=1
+
+DRY_RUN="$DRY_RUN" "$ROOT/bin/sync"
+
+if [ "$doctor_ok" -ne 0 ]; then
+  echo
+  echo "Paths are wired up, but some tools above still need attention." >&2
+  echo "Fix them, then re-run: just doctor" >&2
+  exit 1
+fi

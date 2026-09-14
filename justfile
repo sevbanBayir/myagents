@@ -1,8 +1,16 @@
-# ~/.agents — one source of truth for every coding agent.
+# myagents — one source of truth for every coding agent.
 # Run `just` with no arguments to see this list.
 
 _default:
     @just --list --unsorted
+
+# Install missing tools, report, then sync. The one command a new machine needs.
+bootstrap:
+    @./bin/bootstrap
+
+# Report which tools this repo needs, and which are present. Installs nothing.
+doctor:
+    @./bin/doctor
 
 # Wire this repo into each agent's expected paths. Run once per machine.
 sync:
@@ -20,8 +28,12 @@ check *paths:
 bless path:
     @./bin/check-staleness --bless {{ path }}
 
-# Everything a pre-commit hook or CI should run.
-ci: check
+# Fail if a first-party file names a non-canonical repo path.
+lint-paths:
+    @./bin/lint-paths
+
+# Everything a pre-commit hook or CI must run.
+ci: lint-paths check
 
 # Scaffold a new skill.
 new-skill name:

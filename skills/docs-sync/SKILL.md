@@ -5,7 +5,7 @@ description: Keep living docs in sync with the code they describe. Use when `jus
 
 # docs-sync
 
-Docs in `~/.agents/docs/` are bound to source files, not to a calendar. Each doc
+Docs in `~/myagents/docs/` are bound to source files, not to a calendar. Each doc
 declares which files it describes; when those files change, the doc is presumed
 stale until a human or agent re-reads it and blesses it.
 
@@ -54,7 +54,7 @@ mechanism into a rubber stamp, and a doc that is confidently wrong is worse than
 ## Finding which docs cover a file
 
 ```sh
-rg -l 'watch:' ~/.agents/docs | xargs rg -l '<filename>'
+rg -l 'watch:' ~/myagents/docs | xargs rg -l '<filename>'
 ```
 
 ## Adding a watch to an existing doc

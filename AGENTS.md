@@ -3,7 +3,7 @@
 Global working agreement for coding agents. Loaded in every session, in every repo.
 
 Keep this file short — it is always in context. Anything long, situational, or
-reference-shaped belongs in a skill (`~/.agents/skills/`) or a doc (`~/.agents/docs/`),
+reference-shaped belongs in a skill (`skills/`) or a doc (`docs/`) in this repo,
 which get loaded only when relevant.
 
 ## Working style
