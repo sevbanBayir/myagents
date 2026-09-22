@@ -134,6 +134,7 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | [android/skills](https://github.com/android/skills) | `agp-9-upgrade`, `adaptive`, `edge-to-edge`, `migrate-xml-views-to-jetpack-compose`, `navigation-3`, `navigation-event`, `styles`, `testing-setup` | Apache 2.0 |
 | [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
 | [AminBlg/SimpleEnglish](https://github.com/AminBlg/SimpleEnglish) | `simple-english`, and the matching `output-styles/simple-english.md` | MIT |
+| [tt-a1i/archify](https://github.com/tt-a1i/archify) | `archify` | MIT |
 
 Every skill that the table does not list is written here. Today that is `docs-sync`
 alone, and it carries no `LICENSE` for that reason.
@@ -145,6 +146,17 @@ Run `/setup-matt-pocock-skills` once per repository before you use the rest.
 One local deviation: upstream `code-review` is renamed to `mp-code-review`, because
 Claude Code ships a built-in skill under the original name. Its three cross-references
 in `ask-matt`, `implement` and `tdd` are rewritten to match. Re-apply this on update.
+
+`archify` is not a copied folder. It is the `archify.zip` release asset, unpacked. That
+package carries no `test/` tree, so it is the smaller half of the upstream repo. The
+vendored copy is v2.16.0. To update, download the newest `archify.zip` from the releases
+page and replace the folder. `THIRD_PARTY_NOTICES.md` is added by hand, because the zip
+omits it and the repo ships it beside `SKILL.md`.
+
+`archify` ships runnable code inside this repo, which no other vendored skill does.
+`compose-preview` also drives a CLI, but that CLI is installed separately, outside the
+repo. `archify` needs Node.js 18 or later on PATH. `bin/doctor` does not check for it,
+because no other skill needs it.
 
 The `android/skills` set keeps its upstream names, so an update is a plain re-copy. Their
 `LICENSE.txt` is the repo-root Apache 2.0 file, because each `SKILL.md` points at that
