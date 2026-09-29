@@ -136,8 +136,8 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | [AminBlg/SimpleEnglish](https://github.com/AminBlg/SimpleEnglish) | `simple-english`, and the matching `output-styles/simple-english.md` | MIT |
 | [tt-a1i/archify](https://github.com/tt-a1i/archify) | `archify` | MIT |
 
-Every skill that the table does not list is written here. Today that is `docs-sync`
-alone, and it carries no `LICENSE` for that reason.
+Every skill that the table does not list is written here. Today that is `docs-sync` and
+`pr-review`, and neither carries a `LICENSE` for that reason.
 
 Upstream groups them into category folders. This repo keeps `skills/` flat, so the
 category level is dropped on copy. To update, re-copy the folders from upstream.
