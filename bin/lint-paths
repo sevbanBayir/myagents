@@ -17,8 +17,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-# First-party files only. Everything under skills/ is vendored except docs-sync.
-OWN=(AGENTS.md README.md justfile bin docs mcp skills/docs-sync)
+# First-party files only. Everything under skills/ is vendored except docs-sync
+# and pr-review.
+OWN=(AGENTS.md README.md justfile bin docs mcp skills/docs-sync skills/pr-review)
 
 # --exclude keeps this script's own header from matching the pattern it documents.
 if hits="$(grep -rn --exclude=lint-paths -- '~/\.agents' "${OWN[@]}" 2>/dev/null)"; then
