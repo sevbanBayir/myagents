@@ -1,7 +1,7 @@
 ---
 name: android-presentation-mvi
 description: |
-  MVI presentation layer for Android/KMP - State, Action, Event, ViewModel, Root/Screen composable split, UI models, UiText error mapping, and process death with SavedStateHandle. Use this skill whenever creating or reviewing a ViewModel, defining screen state, actions, or events, structuring composables, mapping errors to UI strings, or handling process death. Trigger on phrases like "add a ViewModel", "create a screen", "MVI", "state", "action", "event", "screen composable", "UiText", "SavedStateHandle", "ObserveAsEvents", or "UI model".
+  MVI presentation layer for Android/KMP - State, Action, Effect in a <Screen>Contract.kt, ViewModel, Root/Screen composable split, UI models, UiText error mapping, and process death with SavedStateHandle. Use this skill whenever creating or reviewing a ViewModel, defining screen state, actions, or effects, structuring composables, mapping errors to UI strings, or handling process death. Trigger on phrases like "add a ViewModel", "create a screen", "MVI", "contract", "state", "action", "effect", "screen composable", "UiText", "SavedStateHandle", "ObserveAsEvents", or "UI model".
 metadata:
   author: Philipp Lackner
 ---
@@ -13,8 +13,13 @@ metadata:
 Every screen has:
 1. **State** — a single data class holding all UI state fields.
 2. **Action** (Intent) — a sealed interface of all user-triggered actions.
-3. **Event** — a sealed interface of one-time side effects (navigation, snackbar).
-4. **ViewModel** — holds `StateFlow<State>`, processes `Action`, emits `Event` via `Channel`.
+3. **Effect** — a sealed interface of one-time side effects (navigation, snackbar).
+4. **ViewModel** — holds `StateFlow<State>`, processes `Action`, emits `Effect` via `Channel`.
+
+Three files per screen, in the screen's package:
+- `<Screen>Contract.kt` — `State`, `Action`, and `Effect`, and nothing else.
+- `<Screen>ViewModel.kt` — the ViewModel alone.
+- `<Screen>Screen.kt` — the `Root` and `Screen` composables and their previews.
  
 ---
  
@@ -47,12 +52,12 @@ sealed interface NoteListAction {
  
 ---
  
-## Event (one-time side effects)
+## Effect (one-time side effects)
  
 ```kotlin
-sealed interface NoteListEvent {
-    data class NavigateToDetail(val noteId: String) : NoteListEvent
-    data class ShowSnackbar(val message: UiText) : NoteListEvent
+sealed interface NoteListEffect {
+    data class NavigateToDetail(val noteId: String) : NoteListEffect
+    data class ShowSnackbar(val message: UiText) : NoteListEffect
 }
 ```
  
@@ -68,15 +73,15 @@ class NoteListViewModel(
     private val _state = MutableStateFlow(NoteListState())
     val state = _state.asStateFlow()
  
-    private val _events = Channel<NoteListEvent>()
-    val events = _events.receiveAsFlow()
+    private val _effects = Channel<NoteListEffect>()
+    val effects = _effects.receiveAsFlow()
  
     fun onAction(action: NoteListAction) {
         when (action) {
             is NoteListAction.OnRefreshClick -> loadNotes()
             is NoteListAction.OnNoteClick -> {
                 viewModelScope.launch {
-                    _events.send(NoteListEvent.NavigateToDetail(action.noteId))
+                    _effects.send(NoteListEffect.NavigateToDetail(action.noteId))
                 }
             }
         }
@@ -91,7 +96,7 @@ class NoteListViewModel(
                 }
                 .onFailure { error ->
                     _state.update { it.copy(isLoading = false) }
-                    _events.send(NoteListEvent.ShowSnackbar(error.toUiText()))
+                    _effects.send(NoteListEffect.ShowSnackbar(error.toUiText()))
                 }
         }
     }
@@ -173,18 +178,16 @@ UI models are always suffixed with `Ui` (e.g., `NoteUi`, `TodoItemUi`).
  
 ## Composable Structure
 
-Both the Root and Screen composable live in the **same file** (e.g., `NoteListScreen.kt`).
-
 ### Root Composable (suffixed `Root`)
 
-Receives the ViewModel (via `koinViewModel()`) and any callbacks needed for navigation. Observes events. Passes state and `onAction` down.
+Receives the ViewModel (via `koinViewModel()`) and any callbacks needed for navigation. Observes effects. Passes state and `onAction` down.
 
 ### Screen Composable (suffixed `Screen`)
 
 Receives only `state` and `onAction`. No ViewModel reference. Can be previewed independently.
 
 ```kotlin
-// NoteListScreen.kt — Root + Screen in a single file
+// NoteListScreen.kt
 
 @Composable
 fun NoteListRoot(
@@ -193,10 +196,10 @@ fun NoteListRoot(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    ObserveAsEvents(viewModel.events) { event ->
-        when (event) {
-            is NoteListEvent.NavigateToDetail -> onNavigateToDetail(event.noteId)
-            is NoteListEvent.ShowSnackbar -> { /* show snackbar */ }
+    ObserveAsEvents(viewModel.effects) { effect ->
+        when (effect) {
+            is NoteListEffect.NavigateToDetail -> onNavigateToDetail(effect.noteId)
+            is NoteListEffect.ShowSnackbar -> { /* show snackbar */ }
         }
     }
 
@@ -259,7 +262,8 @@ Only save what truly matters after process death — not the entire state.
 | ViewModel | `<Screen>ViewModel` | `NoteListViewModel` |
 | State | `<Screen>State` | `NoteListState` |
 | Action | `<Screen>Action` | `NoteListAction` |
-| Event | `<Screen>Event` | `NoteListEvent` |
+| Effect | `<Screen>Effect` | `NoteListEffect` |
+| Contract file | `<Screen>Contract.kt` | `NoteListContract.kt` |
 | Root composable | `<Screen>Root` | `NoteListRoot` |
 | Screen composable | `<Screen>Screen` | `NoteListScreen` |
 | UI model | `<Model>Ui` | `NoteUi`, `TodoItemUi` |
@@ -268,9 +272,9 @@ Only save what truly matters after process death — not the entire state.
  
 ## Checklist: Adding a New Screen
  
-- [ ] Define `State`, `Action`, `Event` in `feature:presentation`
+- [ ] Define `State`, `Action`, `Effect` in `<Screen>Contract.kt`
 - [ ] Implement `ViewModel` in `feature:presentation`
-- [ ] Create `<Screen>Root` composable (holds ViewModel, observes events)
+- [ ] Create `<Screen>Root` composable (holds ViewModel, observes effects)
 - [ ] Create `<Screen>Screen` composable (pure state + onAction, previewable)
 - [ ] Map any domain errors to `UiText` via extension functions
 - [ ] Add `SavedStateHandle` for any form fields that must survive process death
