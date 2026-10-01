@@ -76,9 +76,6 @@ write() {
 echo
 echo "Claude Code"
 link "$ROOT/skills" "$HOME/.claude/skills"
-# Output styles change the default response style. Selecting one is a settings
-# change (outputStyle), not a symlink: see the note at the end of this script.
-link "$ROOT/output-styles" "$HOME/.claude/output-styles"
 # Claude Code reads CLAUDE.md; the @import makes it defer to the shared AGENTS.md
 # instead of duplicating it. Works whether or not it also reads AGENTS.md natively.
 write "$HOME/.claude/CLAUDE.md" "@$ROOT/AGENTS.md"

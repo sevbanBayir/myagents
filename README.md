@@ -133,7 +133,6 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | Philipp Lackner (Android/KMP architecture skills, shipped as `skills.zip`) | the 7 `android-*` skills | not stated |
 | [android/skills](https://github.com/android/skills) | `agp-9-upgrade`, `adaptive`, `edge-to-edge`, `migrate-xml-views-to-jetpack-compose`, `navigation-3`, `navigation-event`, `styles`, `testing-setup` | Apache 2.0 |
 | [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
-| [AminBlg/SimpleEnglish](https://github.com/AminBlg/SimpleEnglish) | `simple-english`, and the matching `output-styles/simple-english.md` | MIT |
 | [tt-a1i/archify](https://github.com/tt-a1i/archify) | `archify` | MIT |
 
 Every skill that the table does not list is written here. Today that is `docs-sync` and
