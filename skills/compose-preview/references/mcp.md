@@ -78,39 +78,35 @@ behind it. Reach for MCP when the loop is long-lived.
 ## Setup
 
 The `compose-preview` CLI bundles the MCP server. There is no second
-download, no manual classpath, no `claude mcp add` argument to compose by
+download, no manual classpath, and no per-host MCP command to compose by
 hand.
 
 ```bash
 # Run from the project root. Bootstraps descriptors + previews.json for every
-# plugin-applied module, then registers the MCP server with every locally
-# installed agent host it detects (Claude Code, Codex, Antigravity).
+# plugin-applied module, then registers the MCP server with each locally
+# installed agent host it detects.
 compose-preview mcp install
-
-# Force a specific host even if it's not auto-detected, or opt out.
-compose-preview mcp install --antigravity        # force Antigravity write
-compose-preview mcp install --no-claude          # skip claude mcp add
-compose-preview mcp install --codex              # force Codex write
-compose-preview mcp install --codex-config /path/to/config.toml
 
 # Verify per-module state (descriptor present, enabled=true).
 compose-preview mcp doctor
 ```
 
 `compose-preview mcp serve` defaults `--project` to the current Gradle root
-when run from a project checkout. Detection per host:
+when run from a project checkout. Which hosts `mcp install` detects, the flags
+that force or skip one, and where each host's entry is written are in
+compose-agent-plugins' [host setup notes](https://github.com/yschimke/compose-agent-plugins/blob/main/docs/host-setup.md#registering-the-local-mcp-server).
 
-- **Claude Code**: `claude` on PATH, or `~/.claude/` exists. Registered via
-  `claude mcp add --scope user` (idempotent — the install upserts).
-- **Codex**: `codex` on PATH, or `~/.codex/` exists. The
-  `[mcp_servers.compose-preview-mcp]` table is replaced in place (or appended)
-  in `~/.codex/config.toml`.
-- **Antigravity**: `__CFBundleIdentifier=com.google.antigravity`,
-  `ANTIGRAVITY_CLI_ALIAS`, or `~/.gemini/antigravity/` exists. The MCP server
-  entry is merged into `~/.gemini/antigravity/mcp_config.json`.
+Every host entry is global: `<stable launcher> mcp serve`, with no
+`--project` (the server finds the project from the client's roots or working
+directory). The launcher is the stable absolute path, such as
+`~/.local/bin/compose-preview`, never a versioned
+`compose-preview-<version>/bin/` directory that the next upgrade deletes.
+`compose-preview mcp register` registers hosts without touching Gradle.
 
-All three host writers store the absolute launcher path because the host may
-launch the server from a different working directory than the Gradle root.
+If a host fails to start the server with `ENOENT` on a
+`.../compose-preview-<version>/bin/compose-preview` path, or every session is
+pinned to one project, run `compose-preview update` (it runs
+`compose-preview mcp repair`), or `compose-preview mcp repair` directly.
 Beyond host registration, `mcp install` does three things behind the scenes:
 
 1. Runs `composePreviewDaemonStart` for every module that applies the plugin,
@@ -162,7 +158,14 @@ for the full table) cover the rest:
   explicit pixel bounds) are the token-frugal knobs — see
   [`references/agent-loop.md`](./agent-loop.md). `force = { reason }` is the
   sanctioned escape hatch for stale renders — see the "do not delete
-  `build/classes/`" note above.
+  `build/classes/`" note above. `inline: false` returns an absolute `pngPath`,
+  dimensions, SHA-256, duration and session-scoped `changed` instead of an
+  inline observation; it overrides `observe` and cannot be combined with
+  `crop`. Clients that read files should pass it and read `pngPath` only when
+  they need to look.
+- `find_previews_for_file(path, workspaceId?)` — maps a source path to preview
+  URIs. No `workspaceId` searches all workspaces; an empty array means no
+  previews. Do not reconstruct a URI from a Kotlin name.
 - `render_matrix`, `diff_semantics`, `record_preview` — the Playwright-style
   interaction/regression tools (matrix sweep, pixel-free semantics diff,
   record-to-Compose-UI-test). Covered in
@@ -173,6 +176,32 @@ for the full table) cover the rest:
   fetch structured per-render data (a11y findings, layout tree, recomposition
   heat-map, …) alongside the PNG. See
   [`references/data-products.md`](./data-products.md) for the kind catalogue.
+
+### Draft viewer, prompts, and fallbacks
+
+**Requires** a compose-preview-server release after v3.74.0 containing #1126
+and #1130 (viewer/resources) and #1128 (prompts, variant choice), and — for
+local file lookup/path results — a `compose-preview` CLI distribution that
+ships compose-preview-server#1124 after compose-ai-tools#5583's split. None is
+released yet. **Until then**, treat every item in this section as absent and
+use inline renders, CLI `pngPath`s and chat-listed choices. Even after release,
+use only what the local `tools/list` / `prompts/list` advertises.
+
+The viewer and action rules match the remote
+[viewer contract](./catalog-mcp.md#draft-viewer-and-interactive-capability-fallbacks):
+a viewer association is not a `resource_link`, fallbacks stay complete, and
+model context does not prove an action ran.
+
+On the local native profile, `preview-file` (required `path`) and
+`migrate-wear-m3` (no arguments) return text instructions, not executed
+workflows. The first uses `find_previews_for_file`; the second still defers API
+choices to the official Wear Compose M3 skill. Without prompt discovery, follow
+the same typed steps.
+
+The only form elicitation is `render_matrix` with `choose: true`; otherwise its
+labelled choices are text. Local stdio is credential-free and has no access-
+grant flow; the remote URL/code fallback is documented only in
+[`catalog-mcp.md`](./catalog-mcp.md#draft-viewer-and-interactive-capability-fallbacks).
 
 ## Multi-workspace and worktrees
 
@@ -218,3 +247,29 @@ see the dedicated [`compose-preview-review/references/mcp-review.md`](../../comp
   — daemon JSON-RPC wire format the MCP shim translates from.
 - [`compose-preview-review/references/mcp-review.md`](../../compose-preview-review/references/mcp-review.md)
   — agent-driven PR review using two MCP workspaces (base + head).
+
+## Evidence rules (moved from SKILL.md)
+
+- After changing Compose UI, render the affected preview and **look at the
+  resulting image on the surface where the person will judge it**. Use the
+  typed MCP render tool when available, or the CLI and its reported `pngPath`;
+  then open that image with the host's image viewer. Source, semantics, hashes,
+  and a successful build are useful checks, but none of them proves what the
+  UI looks like.
+- Showable evidence is part of the result. Keep the returned image or file path
+  so the person can inspect the same render. If the harness cannot display the
+  render, say which surface is unavailable and why; do not describe an inferred
+  visual result as something you saw.
+- Prefer typed MCP tools and their published input/output schemas. Use a
+  dedicated validation tool when the server exposes one. Do not hand-edit
+  design or render-manifest JSON as a substitute for a typed operation; if a
+  required typed or validation capability is absent, name that gap plainly.
+
+### Interactive MCP capabilities
+
+- The shared viewer, `resource_link` results, file-path lookup, prompts, and
+  `render_matrix` variant choice require a compose-preview-server release after
+  v3.74.0 (none has shipped them yet). Until then, treat them as absent and use
+  text/image/path results. Use only what the server advertises; details in
+  [mcp.md](./mcp.md#draft-viewer-prompts-and-fallbacks) and
+  [catalog-mcp.md](./catalog-mcp.md#draft-viewer-and-interactive-capability-fallbacks).
