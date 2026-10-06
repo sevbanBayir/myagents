@@ -129,7 +129,7 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 
 | Source | Skills | License |
 | --- | --- | --- |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | the 18 `engineering` and 7 `productivity` skills | MIT |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | the 20 `engineering` and 7 `productivity` skills | MIT |
 | Philipp Lackner (Android/KMP architecture skills, shipped as `skills.zip`) | the 7 `android-*` skills | not stated |
 | [android/skills](https://github.com/android/skills) | `agp-9-upgrade`, `adaptive`, `edge-to-edge`, `migrate-xml-views-to-jetpack-compose`, `navigation-3`, `navigation-event`, `styles`, `testing-setup` | Apache 2.0 |
 | [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
@@ -143,8 +143,9 @@ category level is dropped on copy. To update, re-copy the folders from upstream.
 Run `/setup-matt-pocock-skills` once per repository before you use the rest.
 
 One local deviation: upstream `code-review` is renamed to `mp-code-review`, because
-Claude Code ships a built-in skill under the original name. Its three cross-references
-in `ask-matt`, `implement` and `tdd` are rewritten to match. Re-apply this on update.
+Claude Code ships a built-in skill under the original name. Its cross-references in
+`ask-matt`, `implement`, `implement-spec` and `tdd` are rewritten to match. Re-apply this
+on update, and grep the new copy for `code-review` in case upstream added another.
 
 `archify` is not a copied folder. It is the `archify.zip` release asset, unpacked. That
 package carries no `test/` tree, so it is the smaller half of the upstream repo. The
