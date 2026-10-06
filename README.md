@@ -149,9 +149,12 @@ on update, and grep the new copy for `code-review` in case upstream added anothe
 
 `archify` is not a copied folder. It is the `archify.zip` release asset, unpacked. That
 package carries no `test/` tree, so it is the smaller half of the upstream repo. The
-vendored copy is v2.16.0. To update, download the newest `archify.zip` from the releases
-page and replace the folder. `THIRD_PARTY_NOTICES.md` is added by hand, because the zip
-omits it and the repo ships it beside `SKILL.md`.
+vendored copy is v3.0.1. To update, download the newest `archify.zip` from the releases
+page and replace the folder.
+
+Since 3.0.1, `finalize` and `deliver` check a release manifest on GitHub Pages and ask the
+agent to mention a newer version. Nothing installs on its own. Set
+`ARCHIFY_UPDATE_CHECK_DISABLED=1` to turn the check off.
 
 `archify` ships runnable code inside this repo, which no other vendored skill does.
 `compose-preview` also drives a CLI, but that CLI is installed separately, outside the
