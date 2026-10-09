@@ -135,8 +135,13 @@ upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the fi
 | [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
 | [tt-a1i/archify](https://github.com/tt-a1i/archify) | `archify` | MIT |
 
-Every skill that the table does not list is written here. Today that is `docs-sync` and
-`pr-review`, and neither carries a `LICENSE` for that reason.
+Every skill that the table does not list is written here. Today that is `docs-sync`,
+`pr-review` and `ui-craft`, and none carries a `LICENSE` for that reason.
+
+`ui-craft` is distilled from sinasamaki's [ChromaDecks](https://github.com/sinasamaki/ChromaDecks),
+which has no license. The skill paraphrases his patterns, writes its own sketches and links to
+his files at a pinned commit. Keep it that way on edits: no copied files or long excerpts.
+[docs/ui-craft-study-guide.md](docs/ui-craft-study-guide.md) is the human-facing companion.
 
 Upstream groups them into category folders. This repo keeps `skills/` flat, so the
 category level is dropped on copy. To update, re-copy the folders from upstream.
