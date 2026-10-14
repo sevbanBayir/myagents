@@ -11,8 +11,9 @@ registered in `decks/Registry.kt`, built from kit slide types and effects. The k
 tables, the generated catalog of every effect, and the pitfalls. Read it before writing a
 slide; this skill is the workflow around it.
 
-- Repo: `~/StudioProjects/ChromaDecks`, branch `deck/kit`. JDK 21 (see `deck.sh`).
-- The repo has no license: private use only. Its `origin` push URL is disabled on purpose.
+- Repo: `~/StudioProjects/ChromaDecks`, branch `main`. JDK 21 (see `deck.sh`).
+- The repo has no license: private use only. sinasamaki's repo is the `upstream` remote, its
+  push URL disabled on purpose.
 - Taste comes from the `ui-craft` skill; deck structure and teaching moves from its
   `references/explainers.md`. Load both.
 
