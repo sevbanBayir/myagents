@@ -1,6 +1,6 @@
 ---
 name: deck-kit
-description: Presentations built from the ChromaDecks deck kit (Compose Desktop slides) - make a talk, deck or "sunum" about a topic, add or restyle slides, pick a look, opener, transition or background, render a deck to PNG and critique it. Use for any slide work in ~/StudioProjects/ChromaDecks.
+description: Presentations built from the my-decks deck kit (Compose Desktop slides) - make a talk, deck or "sunum" about a topic, add or restyle slides, pick a look, opener, transition or background, render a deck to PNG and critique it. Use for any slide work in ~/StudioProjects/my-decks.
 ---
 
 # deck-kit
@@ -11,9 +11,10 @@ registered in `decks/Registry.kt`, built from kit slide types and effects. The k
 tables, the generated catalog of every effect, and the pitfalls. Read it before writing a
 slide; this skill is the workflow around it.
 
-- Repo: `~/StudioProjects/ChromaDecks`, branch `main`. JDK 21 (see `deck.sh`).
-- The repo has no license: private use only. sinasamaki's repo is the `upstream` remote, its
-  push URL disabled on purpose.
+- Repo: `~/StudioProjects/my-decks`, branch `main`, the private GitHub repo
+  `sevbanBayir/my-decks`. JDK 21 (see `deck.sh`).
+- It is built on sinasamaki's ChromaDecks, which carries no license: the repo stays private.
+  His repo is the `upstream` remote, its push URL disabled on purpose.
 - Taste comes from the `ui-craft` skill; deck structure and teaching moves from its
   `references/explainers.md`. Load both.
 

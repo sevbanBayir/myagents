@@ -142,8 +142,8 @@ Every skill that the table does not list is written here. Today that is `docs-sy
 which has no license. The skill paraphrases his patterns, writes its own sketches and links to
 his files at a pinned commit. Keep it that way on edits: no copied files or long excerpts.
 [docs/ui-craft-study-guide.md](docs/ui-craft-study-guide.md) is the human-facing companion.
-`deck-kit` is the workflow for building talks from the deck kit in a private ChromaDecks
-branch; it names kit API and paths only, and the kit's own `KIT.md` holds the reference.
+`deck-kit` is the workflow for building talks in my-decks, a private repo built on ChromaDecks;
+it names kit API and paths only, and the kit's own `KIT.md` holds the reference.
 
 Upstream groups them into category folders. This repo keeps `skills/` flat, so the
 category level is dropped on copy. To update, re-copy the folders from upstream.
