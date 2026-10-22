@@ -1,6 +1,6 @@
 ---
 name: deck-kit
-description: Presentations built from the my-decks deck kit (Compose Desktop slides) - make a talk, deck or "sunum" about a topic, add or restyle slides, pick a look, opener, transition or background, render a deck to PNG and critique it. Use for any slide work in ~/StudioProjects/my-decks.
+description: Presentations built from the my-decks deck kit (Compose Desktop slides) - make a talk, deck or "sunum" about a topic, add or restyle slides, pick a look, opener, transition or background, render a deck to PNG and critique it, write speaker notes, rehearse with the presenter view, polish under hot reload, export a PDF backup. Use for any slide work in ~/StudioProjects/my-decks.
 ---
 
 # deck-kit
@@ -38,19 +38,24 @@ slide; this skill is the workflow around it.
    [references/recipes.md](references/recipes.md). Done when every slide has a type and a
    one-sentence idea, and the human has seen the outline when the talk is theirs to give.
 4. **Build.** Copy `_talks/starter/` to `_talks/<id with _ for ->/`, rename its package, id and val, add it
-   to the "talks" group in `decks/Registry.kt`, fill the slides. Done when `./deck.sh list`
+   to the "talks" group in `decks/Registry.kt`, fill the slides. A talk given to a room gets
+   `.with(notes = "…")` on every entry: 1–3 sentences on what the room should understand and
+   what to point at, with no fact the slide doesn't carry. Done when `./deck.sh list`
    (it compiles on JDK 21; a bare `./gradlew` may pick a JDK Gradle can't run on) shows the talk.
 5. **Render.** `./deck.sh <id> render DIR --transitions` (add `--no-backend-check` when a
    backend is off). Open the contact sheet, the transition sheet and every step PNG of the
-   render with the Read tool, and single strips where the sheet looks off. Done when you have
-   looked at all of them.
+   render with the Read tool, and single strips where the sheet looks off. For a talk with
+   notes, also render `./deck.sh <id> render DIR --presenter --minutes M --last` and read the
+   notes as the laptop will show them. Done when you have looked at all of them.
 6. **Critique.** Walk [references/critique.md](references/critique.md) slide by slide, writing
    pass or fail with what you saw. Fix, re-render with `--only`, repeat, and finish with one
    full render so the sheets hold the whole talk. Done when every item passes or carries a
    written reason.
-7. **Hand over.** Tell the human how to run it (`./deck.sh <id>`), the keys, and what only a
-   rehearsal can judge: transition feel, live slides, timing. Commit only when asked; tag a
-   delivered talk `talk/<id>-<yyyy-mm>`.
+7. **Hand over.** Tell the human how to polish it (`./deck.sh <id> --hot`), present it
+   (`./deck.sh <id> --presenter --minutes M`, mirroring off; F fullscreen, P presenter view,
+   T restart the clock), where each rehearsal's timings land (`build/rehearsals/`), the backup
+   (`./deck.sh <id> pdf --last`), and what only a rehearsal can judge: transition feel, live
+   slides, timing. Commit only when asked; tag a delivered talk `talk/<id>-<yyyy-mm>`.
 
 ## Gotchas
 
@@ -62,3 +67,10 @@ slide; this skill is the workflow around it.
   `kit/` with a catalog entry, talk-only parts into the talk's folder.
 - Every `./deck.sh` call rebuilds the desktop jar: one render at a time per checkout.
 - A talk that resets a backend's presets needs its own backend port, never the developer's.
+  A PDF of a live talk shows whatever its backend answered during the export.
+- Live work keys on `isCurrentSlide()`, which is false in the presenter's previews; entrances
+  key on `isShownSlide()`.
+- Hot reload rebuilds the slide list and puts each slide back on its step by position: after
+  adding or removing a slide, the ones after it may land on a neighbour's step.
+- Windows take keyboard focus from whatever the human is typing in. Verify with `render` and
+  `render --presenter`; open a window only when the human asks for one.
