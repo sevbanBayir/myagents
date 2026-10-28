@@ -1,6 +1,6 @@
 ---
 name: compose-preview-review
-description: Review pull requests that change Compose UI by rendering @Preview composables on base and head and diffing them. Use when reviewing a UI PR locally or from a CI agent session (@claude mention), authoring an agent-opened PR that touches UI, or triaging flaky or unstable previews (time/random/animation). Pairs with the compose-preview skill; for wiring the CI that posts those diffs, see the compose-preview-ci skill.
+description: Review Compose UI previews and pull requests by rendering base and head, diffing them, and checking catalog design guidelines. Use for a UI design review, a UI PR locally or from a CI agent session (@claude mention), authoring an agent-opened PR that touches UI, or triaging flaky or unstable previews (time/random/animation). Pairs with the compose-preview skill; for wiring the CI that posts those diffs, see the compose-preview-ci skill.
 ---
 
 # Compose Preview — Review
@@ -15,23 +15,19 @@ is about reading what that CI produces (and rendering by hand when it isn't
 there).
 
 This skill assumes the **compose-preview** skill is installed — it owns
-the renderer, CLI, and Gradle plugin. Check first with
-`compose-preview --version`; if it's missing:
-
-1. Run the stub bundled with the compose-preview skill, if it's on disk:
-   `bash ~/.agents/skills/compose-preview/scripts/compose-preview --version`
-   (first run installs the CLI and puts it on `PATH`).
-2. Otherwise `npx skills add yschimke/skills --global --yes --skill compose-preview --skill compose-preview-review`, then run that stub.
-   Update later with `compose-preview update` (CLI) and `npx skills update` (skills).
-3. No Node? `curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh | bash`
+the renderer, CLI, and Gradle plugin. Hosted catalog and UI Builder guidelines
+reviews use its checklist without requiring a local CLI or Gradle checkout.
+For local rendering workflows, check first with
+`compose-preview --version`; if it's missing,
+follow its [setup reference](../compose-preview/references/setup.md#install)
+(usually one command: `bash ~/.agents/skills/compose-preview/scripts/compose-preview --version`).
 
 ## Source
 
 This skill is maintained at
 [github.com/yschimke/skills](https://github.com/yschimke/skills) under
-`skills/compose-preview-review/`. To check for updates, compare the
-installed copy against `main` (e.g. `git ls-remote
-https://github.com/yschimke/skills HEAD`). The CLI, renderer, and
+`skills/compose-preview-review/`. To update, see
+[setup.md § Update](../compose-preview/references/setup.md#update). The CLI, renderer, and
 GitHub Actions referenced below ship from
 [github.com/yschimke/compose-ai-tools](https://github.com/yschimke/compose-ai-tools).
 
@@ -41,6 +37,7 @@ Pick the workflow that matches the task:
 
 | Task | Read |
 |---|---|
+| Review previews or a catalog render against Android design guidelines | [Catalog guidelines checklist](https://github.com/yschimke/skills/blob/main/skills/compose-preview/references/design-guidelines.md) from the required compose-preview skill (read its installed reference first) |
 | Review a PR locally that touches UI | [references/agent-pr.md § Reviewing a PR](./references/agent-pr.md#reviewing-a-pr-agent-workflow) |
 | Review or author from a **CI agent session** (a mention-triggered agent on an Actions runner) | [references/ci-agent-sessions.md](./references/ci-agent-sessions.md) |
 | Author an agent-opened PR that touches UI | [references/agent-pr.md § Authoring an Agent PR](./references/agent-pr.md#authoring-an-agent-pr-body-structure) |
@@ -75,6 +72,12 @@ Pick the workflow that matches the task:
 4. **Read** the PNGs for changed and new entries — that's the visual
    context the human reviewer will lack.
 
+   For a design-guidelines review, also follow the
+   [catalog guidelines checklist](https://github.com/yschimke/skills/blob/main/skills/compose-preview/references/design-guidelines.md).
+   Reuse the PR's `<!-- guidelines-report -->` when it matches the head and
+   applicable rules. Report stale, pending or unchecked coverage rather than
+   treating an empty findings list as passed.
+
 5. **Post a text-only review comment** summarising deltas. Image upload
    only with explicit consent — see
    [references/agent-pr.md § Uploading images](./references/agent-pr.md#3-uploading-images--only-with-explicit-consent).
@@ -83,6 +86,7 @@ Pick the workflow that matches the task:
 
 | Path | When to read |
 |---|---|
+| [Catalog guidelines checklist](https://github.com/yschimke/skills/blob/main/skills/compose-preview/references/design-guidelines.md) | Keyless MCP review, published guideline results and CLI fallback; surface selection, pictures, measured evidence and coverage. |
 | [references/agent-pr.md](./references/agent-pr.md) | Full PR review + agent PR authoring guidance: comment structure, image hosting choices, things to flag, integration with the unified `apply` CI action when present. |
 | [references/ci-agent-sessions.md](./references/ci-agent-sessions.md) | Running this skill inside a mention-triggered CI agent session: Gradle-only rendering, commit-SHA-pinned image embedding, discovering and reusing the repo's existing preview-diff CI. |
 | [references/stability.md](./references/stability.md) | Flaky / unstable previews: detection (render twice, CI symptoms), common causes (clock, randomness, animations, network images, locale), fixes, and how to review a suspect diff. |

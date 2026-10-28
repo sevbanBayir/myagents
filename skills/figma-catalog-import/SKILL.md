@@ -1,6 +1,6 @@
 ---
 name: figma-catalog-import
-description: Import a code-derived design-artifact catalog (from compose-design-catalog) into a Figma file as authoritative renders — grouped, with a11y greenlines, spacing redlines, a token→variable collection, and a design-map.json correspondence. Use when taking a published design-artifacts/<system> bundle into Figma. Decides the import case first (code-led vs design-led × new vs existing file), never delete-and-rebuilds, and reconciles in place keyed by componentId. Pairs with compose-design-catalog.
+description: Import a code-derived design-artifact catalog (from compose-design-catalog) into a Figma file as authoritative renders — grouped, with a11y greenlines, spacing redlines, a token→variable collection, and a design-map.json correspondence. Use when taking a published design-artifacts/SYSTEM bundle into Figma. Decides the import case first (code-led vs design-led × new vs existing file), never delete-and-rebuilds, and reconciles in place keyed by componentId. Pairs with compose-design-catalog.
 ---
 
 # Figma catalog import

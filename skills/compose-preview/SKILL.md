@@ -1,6 +1,6 @@
 ---
 name: compose-preview
-description: Render a Jetpack Compose or Compose Multiplatform @Preview to PNG in one call (MCP render_preview, or the compose-preview CLI) and look at it. Use whenever someone asks to render, show, or see what a composable, @Preview or Compose component looks like (including library components such as Material 3 or Wear M3 EdgeButton, which come from the hosted catalog), after editing Compose UI to verify it, and to compare before/after.
+description: Render a Jetpack Compose or Compose Multiplatform @Preview to PNG in one call (MCP render_preview, or the compose-preview CLI) and look at it. Use whenever someone asks to render, show, or see what a composable, @Preview or Compose component looks like (including library components such as Material 3 or Wear M3 EdgeButton, which come from the hosted catalog), after editing Compose UI to verify it, to compare before/after, or to review previews against catalog design guidelines.
 ---
 
 # Compose Preview
@@ -11,6 +11,14 @@ Robolectric, CMP Desktop via Skia). CLI, Gradle plugin and renderers ship from
 from [compose-preview-server](https://github.com/yschimke/compose-preview-server).
 
 ## Render first
+
+For a request to render or show a preview, follow the short loop below. For a
+requested guidelines review, use
+[the review checklist](./references/design-guidelines.md) to choose the local,
+hosted or UI Builder lane before invoking tools. Published catalogs and
+server-homed designs use hosted tools first; a missing local checkout does not
+require cloning, Gradle or a cloud environment. If tools are unavailable,
+report blocked evidence and follow the integration's setup guidance.
 
 With the local MCP server attached (compose-preview-server 3.78.0+), its
 `initialize` instructions say how to call it: `render_preview
@@ -58,13 +66,25 @@ only. Fetch pixels only for the final screen or the cells whose hash moved,
 or that you must judge by eye: one `render_preview` per such cell (its
 `overrides` or `uri`, `inline=false`) and one read of its `pngPath`.
 
+**Design guidelines review.** When asked to review a preview or catalog design
+against Android design guidance, read
+[design-guidelines.md](./references/design-guidelines.md). It covers keyless
+agent review, published results and the CLI's `compose-preview review` loop,
+including explicit surface selection, required pictures and incomplete
+coverage. It is in the default
+skill bundle; the optional PR-review bundle is not required.
+
 **Hand multi-render reviews to `design-reviewer`.** If a `design-reviewer`
 subagent is available (the compose-agent-plugins plugins ship one), delegate
 accessibility, font-scale, round-device and other matrix checks to it so the
-images stay out of your context, and relay its verdict and paths. Without one,
-run the sweep yourself as above. Never ask for `contactSheet: true` in your
-own context: the sheet puts every cell's pixels there at once, and a variant
-grid sends one unless you pass `false`.
+images stay out of your context, and relay its verdict and paths. Give it the
+subject, home/revision, catalog rules and requested coverage. Without one, run
+the same checklist yourself and report that delegation was unavailable.
+For a routine hash sweep, keep `contactSheet: false`. A requested visual
+guidelines comparison needs pixels: inspect its required frames even in your
+own context when no reviewer exists. Prefer only the relevant individual
+images or a bounded comparison sheet, and never claim visual coverage from
+hashes alone.
 
 **After a source edit**, call `render_preview` again. `notify_file_changed` is
 optional. **If the result says it is stale**, make exactly one more call with
@@ -89,32 +109,26 @@ a stateless inner composable and preview that
 
 ## Install / update (only if missing)
 
-Check with `compose-preview --version`. Install the skills and CLI:
+Check with `compose-preview --version`. If it's missing, run this skill's stub,
+`bash <this skill's dir>/scripts/compose-preview --version`: its first run
+installs the CLI and puts it on `PATH`. Every other route, updating, and the
+Gradle plugin are in [setup.md](./references/setup.md); MCP wiring (the local
+server and the one hosted URL) is in [mcp.md](./references/mcp.md).
 
-```sh
-npx skills add yschimke/skills --global --yes --skill compose-preview --skill compose-ui-builder
-# No Node:
-curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh | bash
+### This repository's managed installation
+
+These skill folders are vendored in `myagents` and linked by `agent-sync`. Keep the
+CLI outside the skills tree. Fetch the upstream `scripts/install.sh`, inspect it,
+and run it with explicit flags:
+
+```bash
+bash /path/to/install.sh --cli-only --cli-home "$HOME/.local/share/compose-preview" --no-modify-path
 ```
 
-Update with `compose-preview update` (skills: `npx skills update`). Plugin
-setup, MCP registration, and the Gradle init script are in
-[setup.md](./references/setup.md).
-
-**Local deviation on this machine.** The CLI is already installed at
-`~/.local/bin/compose-preview`, unpacked under `~/.local/share/compose-preview`. This skill
-bundle is vendored into `~/myagents/skills/`, and `~/.claude/skills` is a symlink to that
-directory. The plain installers above would write a second copy of the skill content, so
-use these flags for any re-install or upgrade:
-
-```sh
-SKILL_DIR="$HOME/.local/share/compose-preview" \
-  curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh \
-  | bash -s -- --cli-only
-```
-
-Do not run `compose-preview update`, `npx skills add` or `npx skills update`. None of them
-passes `--cli-only`.
+Use that command for a missing CLI or a deliberate upgrade, instead of the stub,
+`compose-preview update`, `npx skills add` or `npx skills update`. Those other paths
+can refresh skill content through the vendor installer. Update this repository's
+skill snapshots separately; the CLI-only invocation leaves their symlinks alone.
 
 ## Working with platform skills
 
@@ -146,9 +160,9 @@ Read only what the task needs.
 
 | Topic | Read |
 |---|---|
-| Install, update, apply the Gradle plugin, `mcp install`, zero-code init script | [setup.md](./references/setup.md) |
+| Install, update, which skills, apply the Gradle plugin, zero-code init script | [setup.md](./references/setup.md) |
 | CLI commands, `--filter`/`--id`/`--force`, `counts` buckets, render filenames, SVG output, Gradle tasks, `build-brief` for non-preview builds | [cli.md](./references/cli.md) |
-| Local MCP server: tools, history (`history_list`/`history_diff`), multi-workspace, **troubleshooting** | [mcp.md](./references/mcp.md) |
+| **Which MCP server** (local vs hosted `https://preview.coo.ee/mcp`); local server setup, tools, history, multi-workspace, **troubleshooting** | [mcp.md](./references/mcp.md) |
 | Interaction loop: semantic refs, `observe` modes, `diff_semantics`, crop, `render_matrix` (variants/matrix), record → test, failure `kind`s | [agent-loop.md](./references/agent-loop.md) |
 | Accessibility (ATF, `compose-preview a11y`) | [a11y.md](./references/a11y.md) |
 | Per-render data (a11y, layout, recomposition, SVG) | [data-products.md](./references/data-products.md) |
@@ -160,7 +174,7 @@ Read only what the task needs.
 | Editable override knobs | [override-knobs.md](./references/override-knobs.md) |
 | Display filters | [display-filters.md](./references/display-filters.md) |
 | Remote Compose, `compose-preview rc` | [remote-compose.md](./references/remote-compose.md) |
-| Remote catalog MCP (`serve`, no checkout) | [catalog-mcp.md](./references/catalog-mcp.md) |
+| Hosted catalog MCP tools and grant flow (`serve`, no checkout) | [catalog-mcp.md](./references/catalog-mcp.md) |
 | Gated server access (`compose-preview auth request`) | [server-access.md](./references/server-access.md) |
 | Agent allowlists, staging PNGs | [permissions.md](./references/permissions.md) |
 | Cloud sandboxes | [agent-cloud.md](./references/agent-cloud.md) |
@@ -169,5 +183,5 @@ Read only what the task needs.
 **CI and PR review** live in opt-in sibling skills:
 [compose-preview-ci](../compose-preview-ci/SKILL.md) (baselines, PR-comment
 Actions) and [compose-preview-review](../compose-preview-review/SKILL.md)
-(base vs. head render and diff). Add one with
-`npx skills add yschimke/skills --global --yes --skill <name>`.
+(base vs. head render and diff). To add one, see
+[setup.md § Which skills](./references/setup.md#which-skills).

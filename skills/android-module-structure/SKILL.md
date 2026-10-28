@@ -77,12 +77,12 @@ Use **version catalogs** (`libs.versions.toml`) for all dependency and version m
 | Networking | Ktor Client |
 | Local DB | Room |
 | Preferences | DataStore |
-| Navigation | Compose Navigation (type-safe) |
-| Serialization | KotlinX Serialization (Ktor + Nav routes) |
+| Navigation | Navigation 3 — use the `navigation-3` skill |
+| Serialization | KotlinX Serialization |
 | Image loading | Coil |
 | Logging | Kermit |
 | Async | Coroutines + Flow |
-| Background tasks | WorkManager |
+| Background tasks | WorkManager — see [upstream WorkManager workflow](https://github.com/PL-Coding-GmbH/Skills/blob/c27b5b42c0fa3300d71d17d44e838f0f974ea145/skills/android-background/SKILL.md) |
 | Secrets | `local.properties` + `BuildConfig` (Android); `BuildKonfig` (KMP) |
 | Testing | JUnit5, Turbine, AssertK, `kotlinx-coroutines-test` |
 | UI testing | `ComposeTestRule` |

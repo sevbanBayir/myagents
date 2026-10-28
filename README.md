@@ -125,12 +125,13 @@ profile or a password manager.
 ## Vendored skills
 
 Some skills are copied in from other people's repos, not written here. Each keeps the
-upstream `LICENSE` next to its `SKILL.md`, so the origin stays visible in the file tree.
+upstream license next to its `SKILL.md`. `skills-upstream.json` pins the imported
+revision, upstream path, file hashes and local adaptations for every selected skill.
 
 | Source | Skills | License |
 | --- | --- | --- |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | the 20 `engineering` and 7 `productivity` skills | MIT |
-| Philipp Lackner (Android/KMP architecture skills, shipped as `skills.zip`) | the 7 `android-*` skills | not stated |
+| [PL Coding / Philipp Lackner](https://github.com/PL-Coding-GmbH/Skills) | the 7 `android-*` discovery names | MIT |
 | [android/skills](https://github.com/android/skills) | `agp-9-upgrade`, `adaptive`, `edge-to-edge`, `migrate-xml-views-to-jetpack-compose`, `navigation-3`, `navigation-event`, `styles`, `testing-setup` | Apache 2.0 |
 | [yschimke/skills](https://github.com/yschimke/skills) | `compose-preview`, `compose-preview-review`, `compose-preview-ci`, `compose-preview-design-board`, `compose-design-catalog`, `compose-ui-builder`, `figma-catalog-import`, `design-parity-review` | Apache 2.0 |
 | [tt-a1i/archify](https://github.com/tt-a1i/archify) | `archify` | MIT |
@@ -147,9 +148,12 @@ Claude Code ships a built-in skill under the original name. Its cross-references
 `ask-matt`, `implement`, `implement-spec` and `tdd` are rewritten to match. Re-apply this
 on update, and grep the new copy for `code-review` in case upstream added another.
 
+Two additional local patches keep instruction authoring in `AGENTS.md`: setup and
+retro consolidate legacy instructions at the same scope. Reapply these on update.
+
 `archify` is not a copied folder. It is the `archify.zip` release asset, unpacked. That
 package carries no `test/` tree, so it is the smaller half of the upstream repo. The
-vendored copy is v3.0.1. To update, download the newest `archify.zip` from the releases
+vendored copy is v3.2.0. To update, download the newest `archify.zip` from the releases
 page and replace the folder.
 
 Since 3.0.1, `finalize` and `deliver` check a release manifest on GitHub Pages and ask the
@@ -161,7 +165,17 @@ agent to mention a newer version. Nothing installs on its own. Set
 repo. `archify` needs Node.js 18 or later on PATH. `bin/doctor` does not check for it,
 because no other skill needs it.
 
-The `android/skills` set keeps its upstream names, so an update is a plain re-copy. Their
+The `android/skills` set keeps its upstream names. Seven selected skills track current
+main. `styles` was removed upstream on 2026-10-26; its last surviving snapshot at
+`4ebabf2b0fd6c04b7150023c8b612f80592a6226` is retained with a status note. No removal
+reason or replacement was documented. See its index entry before updating.
+
+For the PL Coding set, `android-compose-ui` and `android-testing` retain their existing
+discovery names as local routers to the new split upstream documents. Preserve those
+routers, the MVI State/Action/Effect contract, Navigation 3, and the recorded local
+cross-reference adaptations when refreshing. Do not install the whole pack.
+
+For the other official Android skills, an update is a plain re-copy. Their
 `LICENSE.txt` is the repo-root Apache 2.0 file, because each `SKILL.md` points at that
 filename. The official installer is `android skills add <name> --project=.`, but it writes
 per-agent directories instead of this repo, so copy the folders by hand.
@@ -178,19 +192,20 @@ The `yschimke/skills` set drives a `compose-preview` CLI. The CLI is a JVM progr
 the machine and not in this repo. Install it per machine:
 
 ```sh
-SKILL_DIR="$HOME/.local/share/compose-preview" \
-  curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh \
-  | bash -s -- --cli-only
+curl -fsSL https://raw.githubusercontent.com/yschimke/skills/main/scripts/install.sh \
+  -o /tmp/myagents-compose-preview-install.sh
+# Review the downloaded installer before running it.
+bash /tmp/myagents-compose-preview-install.sh --cli-only \
+  --cli-home "$HOME/.local/share/compose-preview" --no-modify-path
 ```
 
-Two details make that command different from the one upstream advertises:
+The flags keep machine-installed tools separate from vendored skills:
 
-- `--cli-only` stops the installer from writing its own copy of the skill content, and from
-  symlinking that copy into `~/.claude/skills`, which is already this repo.
-- `SKILL_DIR` moves the unpacked CLI out of the installer's default,
-  `$HOME/.agents/skills/compose-preview`. This setup does not use that directory, so the
-  default would leave a stray skills tree next to the real one. Clone this repo to
-  `$HOME/.agents` and the default overwrites your vendored copy instead.
+- `--cli-only` leaves the repository-managed skill content and its agent links alone.
+- `--cli-home` keeps the executable distribution outside the skill directory. The
+  default `$HOME/.agents/skills/compose-preview` can be a symlink into this repo;
+  unpacking binaries there would modify vendored content.
+- `--no-modify-path` leaves shell startup files to the machine's own setup.
 
 The result is `~/.local/bin/compose-preview`, which must be on your PATH. The CLI needs
 Java 17 or later, from PATH or from `JAVA_HOME`. Android Studio's bundled runtime works:
@@ -200,6 +215,10 @@ Do not run `compose-preview update` to upgrade. It pipes the installer without
 `--cli-only`, so it writes the second skill copy that the flag exists to prevent. Re-run
 the command above instead, and re-copy the skill folders from upstream.
 
+The installer can prune old CLI versions and run MCP repair even under `--cli-only`.
+For a binary-only update, extract the verified release into a new version directory
+and switch the existing launcher, retaining the previous distribution.
+
 One local deviation lives inside the vendored content: `skills/compose-preview/SKILL.md`
-carries a short note with the two flags above, because an agent that reads the skill never
+carries a short note with the flags above, because an agent that reads the skill never
 reads this file. Re-apply that note on update.

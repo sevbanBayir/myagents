@@ -1,22 +1,9 @@
-# Catalog MCP (a remote preview server, over MCP)
+# Hosted catalog MCP (a remote preview server, over MCP)
 
-There are **two** compose-preview MCP surfaces, and they are not the same
-server. Pick the right one first — most confusion here is an agent aiming
-local instructions at a remote box, or the reverse.
-
-| | [`references/mcp.md`](./mcp.md) — **local daemon MCP** | **catalog MCP** (this file) |
-| --- | --- | --- |
-| What it drives | daemons on *your* machine, over a checkout you can build | a `compose-preview serve` deployment someone else runs |
-| Transport | stdio, launched by your agent host | Streamable HTTP, `POST https://<host>/mcp` |
-| Needs a checkout | yes | no |
-| Credential | none — it is your machine | a scoped grant, always |
-| Can register projects, watch files, rebuild | yes | no — those stay local |
-| Ships from | [`compose-ai-tools`](https://github.com/yschimke/compose-ai-tools) (`mcp/`) | [`compose-preview-server`](https://github.com/yschimke/compose-preview-server) |
-
-Reach for catalog MCP when you have **a server URL and no checkout**: reviewing
-a published catalog, comparing a preview against what it looked like last week,
-or pulling a11y data for a component you cannot build locally. If you have the
-repo, the local daemon MCP is cheaper and more capable — use that.
+The **hosted** compose-preview MCP server: a `compose-preview serve`
+deployment's `/mcp` endpoint, for library catalogs and UI Builder designs with
+no checkout. The public one is `https://preview.coo.ee/mcp`. Which server to
+use, the local-vs-hosted comparison, and which hosted URL to configure are in [mcp.md § Which MCP server](./mcp.md#which-mcp-server).
 
 Upstream design doc, which this file summarises for agents:
 [`docs/design/CATALOG_MCP.md`](https://github.com/yschimke/compose-preview-server/blob/main/docs/design/CATALOG_MCP.md).
@@ -36,6 +23,12 @@ grant-request URL. That header **is** the discovery mechanism — read it rather
 than guessing the flow.
 
 ## Getting in without leaving MCP
+
+The device flow below applies when the server is reachable and returns
+`authorization_required`, with the access tools advertised. If the connection
+fails before a server response, report the block and follow the integration's
+setup guidance. Do not clone a catalog or start a local build to recover tool
+availability. A network error alone does not establish an expired server grant.
 
 [`references/server-access.md`](./server-access.md) covers the grant model —
 the scopes, what to ask for, what an approver can and cannot do, and why you
@@ -66,8 +59,9 @@ not per endpoint, so an unauthenticated client can still complete the handshake
 and discover the way in.
 
 **Grants live in memory.** A server restart or redeploy drops every grant
-regardless of its remaining TTL. A sudden `401` mid-task is that, not a bug —
-ask for a new grant the same way you asked for the first.
+regardless of its remaining TTL. A structured `authorization_required` response can be recovered with a new
+grant when the tool connection is available; a bare `401` alone does not
+establish which layer failed. Connection setup/recovery belongs to the integration.
 
 ## The tool surface
 

@@ -118,8 +118,14 @@ Use the `*Of` constructor-reference form by default. Only use the lambda form wh
  
 ---
  
+## Worker DI
+
+For WorkManager Worker injection, see [upstream WorkManager workflow](https://github.com/PL-Coding-GmbH/Skills/blob/c27b5b42c0fa3300d71d17d44e838f0f974ea145/skills/android-background/SKILL.md) — covers `KoinWorkerFactory` setup, disabling the default initializer, and the `worker { }` scope.
+
+---
+
 ## Checklist: Adding DI for a New Feature
- 
+
 - [ ] Define `val <feature>DataModule = module { ... }` in `feature:data`
 - [ ] Define `val <feature>PresentationModule = module { ... }` in `feature:presentation`
 - [ ] Register both modules in `:app`'s `startKoin { modules(...) }`

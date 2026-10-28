@@ -1,0 +1,2767 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-28",
+  "purpose": "Pinned skill imports and local adaptations. Only the existing selected skills are maintained. styles is an explicitly marked archival exception after upstream removal.",
+  "update_guide": "README.md#vendored-skills",
+  "sources": {
+    "mattpocock": {
+      "kind": "github",
+      "repository": "https://github.com/mattpocock/skills",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "license": "MIT"
+    },
+    "android": {
+      "kind": "github",
+      "repository": "https://github.com/android/skills",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "license": "Apache-2.0"
+    },
+    "pl-coding": {
+      "kind": "github",
+      "repository": "https://github.com/PL-Coding-GmbH/Skills",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "license": "MIT",
+      "provenance": "Official PL Coding GmbH organization profile links to pl-coding.com; commit author Philipp Lackner, mail@pl-coding.com."
+    },
+    "yschimke": {
+      "kind": "github",
+      "repository": "https://github.com/yschimke/skills",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "license": "Apache-2.0"
+    },
+    "archify": {
+      "kind": "github",
+      "repository": "https://github.com/tt-a1i/archify",
+      "checked_revision": "208acba8d412335185b2056fedf54b3405df43fb",
+      "license": "MIT",
+      "tag": "v3.2.0",
+      "release_asset": "archify.zip",
+      "asset_sha256": "70e210265c59f24dcbdf2a502ff671104b5454e7ee7d3554aecd86bad32384f5",
+      "asset_url": "https://github.com/tt-a1i/archify/releases/download/v3.2.0/archify.zip"
+    },
+    "local": {
+      "kind": "maintained_here",
+      "repository": "https://github.com/sevbanBayir/myagents",
+      "external_upstream": null
+    }
+  },
+  "skills": [
+    {
+      "name": "adaptive",
+      "local_path": "skills/adaptive",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "e7a778745599729973cd6a07f0c90be3355e9785f650680daece8905fe0f617d"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/flexbox/container-behavior.md",
+          "sha256": "7a33b15b827dbf21557a2ac808d3e0c2653cf33cc4c58277f2eb94ebfa41aa5f"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/flexbox/get-started.md",
+          "sha256": "2333ea80100012554a3891048f237b6aeacf9e5f9d8b54d8b10c4cf639897813"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/flexbox/index.md",
+          "sha256": "952ca4608d36dcb0db9a36aed865f9cdb5e85583480cd85e9e364327be460ecb"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/flexbox/item-behavior.md",
+          "sha256": "94e894a59857662ed784913774a4d0c5bcec7d16468c4c910962a7d806a0e562"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/grid/container-properties.md",
+          "sha256": "fb12005053f5f040c26c5b74a93c11825d5a27f1802ec7748859b24ee2c030c7"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/grid/get-started.md",
+          "sha256": "96a2eeb05283eb5c99b751b4bf68769b59462e2d0bb70170260325004240e673"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/grid/index.md",
+          "sha256": "f6fb9a8d962dc7053fa5a1a20234d96fd0eeb9d4252fc98c40826353816815ab"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/grid/item-properties.md",
+          "sha256": "ef0a67039918022d01ac26983b3cc06c798050736d42ffe692c98e3c4517b45a"
+        },
+        {
+          "path": "references/android/develop/ui/compose/layouts/adaptive/mediaquery/index.md",
+          "sha256": "1e79df59c053569d5376a618c414b793670fdf35e337d7c8aecce81bf09f90d7"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/material-listdetail.md",
+          "sha256": "e4781cf0fc691f92c202400a07ebc80424666681f9547e757f660388252cdb29"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/save-state.md",
+          "sha256": "88f4e8e8831368f58fba9dc28f2cb40a0dcf0a627df5c09eb5b2a837486f9d6f"
+        },
+        {
+          "path": "references/android/studio/preview/compose-screenshot-testing-with-testsuites.md",
+          "sha256": "4b4ada7a50201bcf9ab90b0d9f00cc2ceb16513d1de7f63c12d634318a2ec20d"
+        },
+        {
+          "path": "references/custom_cursors.md",
+          "sha256": "a6673e5540ea54e73c871a1e28e47c73b5f8e7cbc5a28bde18acd8ff3d6fd2fe"
+        },
+        {
+          "path": "references/foldable-tabletop.md",
+          "sha256": "5133e364ce466df05a3c012565f237b6fa27f853dbc92d2d65982045c20f2a79"
+        },
+        {
+          "path": "references/keyboard_shortcuts.md",
+          "sha256": "72c2876b4c805f00b00c948f00f0e41d9a3d2c9207a38262f45cd2ab03327513"
+        },
+        {
+          "path": "references/tooltips.md",
+          "sha256": "c87d96b2da4488cbbfd097a25a6b4557c48de055df96c7602bd7cb2966d2e4e9"
+        }
+      ],
+      "upstream_path": "jetpack-compose/adaptive"
+    },
+    {
+      "name": "agp-9-upgrade",
+      "local_path": "skills/agp-9-upgrade",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "edc7fc5f742619372f6f2c58915bf63a2d73b68f50d996145595ceecde1d654a"
+        },
+        {
+          "path": "references/android/build/migrate-to-built-in-kotlin.md",
+          "sha256": "5dc2f8f2b337eecb8e405ff06da2df6c3119c66c7428111da2803510f52817bf"
+        },
+        {
+          "path": "references/android/build/releases/agp-9-0-0-release-notes.md",
+          "sha256": "c9f86f9f9b62f5ee9edec4172554fa75f3d5e7945b43d24271fba614df76e5b2"
+        },
+        {
+          "path": "references/buildconfig.md",
+          "sha256": "28d97a9afb78d002577f771f15b69ba52fec788b434496f0166c4a47e2a66f64"
+        },
+        {
+          "path": "references/ksp-kapt.md",
+          "sha256": "f9f75335f88e5fcf45ea79bf918a934bc0c51c76abd74ffca5de6c266640a536"
+        },
+        {
+          "path": "references/paparazzi-gradle-9.md",
+          "sha256": "bbf9d0f0e87480f411edbdae49e3bdc3d63b964fc231b5826a1ab2ce075e0d29"
+        },
+        {
+          "path": "references/recipes.md",
+          "sha256": "09a40328201b5b6b6ac2e0721af4b12bdce58f8d0510c89950fb3da396edeb7f"
+        }
+      ],
+      "upstream_path": "build-system/agp/agp-9-upgrade"
+    },
+    {
+      "name": "android-compose-ui",
+      "local_path": "skills/android-compose-ui",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Keep the existing android-compose-ui discovery name as a local router to the two upstream split documents; store only bodies in references and rewrite cross-pointers to the local files.",
+        "Link the optional Figma vector workflow to pinned upstream documentation; it is not installed as an additional skill."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "651758e9a4fcaabfdc61da2db22a16716745459f76ef2fbefe7f7c94ba643187"
+        },
+        {
+          "path": "references/compose-architecture.md",
+          "sha256": "cf39a3b5d1bd8d42f54e858c6dbbfe958771206739eb4fc6b44c6a73f661245a"
+        },
+        {
+          "path": "references/compose-components.md",
+          "sha256": "97917f48522d01264e4d636738b3781f1bd614228332583cac979651c2ec94ad"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-compose-architecture/SKILL.md",
+        "skills/android-compose-components/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-data-layer",
+      "local_path": "skills/android-data-layer",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "eca9ba3de9e253afc5cd62e7f49b818ac273bb8661e3eb27f13be103af4e3ed6"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-data-layer/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-di-koin",
+      "local_path": "skills/android-di-koin",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Replace the new uninstalled android-background skill reference with a pinned upstream documentation link."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "27d1da258ebf5a3679d03b4af609a73e913e0fd8faf9ff056827acb692bfa590"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-di-koin/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-error-handling",
+      "local_path": "skills/android-error-handling",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Normalize angle brackets out of the frontmatter description for validator compatibility; retain typed Result examples in the body."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "2bb238f3a00badbdc6aea989745d09a6f8c65204161c4a6d43ca91734fb41782"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-error-handling/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-module-structure",
+      "local_path": "skills/android-module-structure",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Preserve the user's Navigation 3 choice in the library table; link the uninstalled WorkManager workflow to pinned upstream documentation."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "830c7cfe63dbe99f74cfd9fa6c38d5f0b8e6f39abf0c045f49d01813202d1ec6"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-module-structure/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-presentation-mvi",
+      "local_path": "skills/android-presentation-mvi",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Retain local Effect terminology/flow names, ObserveAsEvents helper, ScreenContract.kt + ScreenViewModel.kt + ScreenScreen.kt file arrangement, and discovery scope. Import upstream optional side-effect guidance and direct click-navigation callbacks.",
+        "Remove angle brackets from the existing frontmatter description to satisfy the skill validator; body naming examples keep them."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "9bebfbfe0ecff448dcc23a4de8681d8247689e77f6f62c6dbbe091dbcd0a1acd"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-presentation-mvi/SKILL.md"
+      ]
+    },
+    {
+      "name": "android-testing",
+      "local_path": "skills/android-testing",
+      "source": "pl-coding",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision": "c27b5b42c0fa3300d71d17d44e838f0f974ea145",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retain metadata.author: Philipp Lackner.",
+        "Copy the official repository-root MIT LICENSE beside SKILL.md.",
+        "Keep the existing android-testing discovery name as a local router to updated unit/UI/integration reference bodies; integration was already within the old skill scope. Rewrite split-name pointers to local files.",
+        "Reduce optional mutation-testing execution instructions to a pinned upstream pointer because that separate skill is not installed; it remains explicit-user-request only.",
+        "Align unit test side-effect examples with local Effect/effects naming and async-result side effects; make all mutation-testing pointers explicitly opt-in."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "8fc185bfd47fd103e85383937649d655b9299d4c662f13fee76c2fb3187048df"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "25dc730d7ee0ebe59aedfb9d875d2c62ffd146ce0fd753e9fbabfa49552bd530"
+        },
+        {
+          "path": "references/integration-testing.md",
+          "sha256": "e0953b584f240e7e49f6ed0fabed33939027db1c26a9fd4f4f981bac9469e715"
+        },
+        {
+          "path": "references/ui-testing.md",
+          "sha256": "f79c9e6df07ff6e5bfbb5efd4a528898e6fac063abd3b2264e69c88cdf06e6d7"
+        },
+        {
+          "path": "references/unit-testing.md",
+          "sha256": "58d161157d77a865143b61f76da7fc341d741fcab2cbcf9357b2a3c298cc5329"
+        }
+      ],
+      "upstream_paths": [
+        "skills/android-unit-testing/SKILL.md",
+        "skills/android-ui-testing/SKILL.md",
+        "skills/android-integration-testing/SKILL.md"
+      ]
+    },
+    {
+      "name": "archify",
+      "local_path": "skills/archify",
+      "source": "archify",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "208acba8d412335185b2056fedf54b3405df43fb",
+      "imported_revision": "208acba8d412335185b2056fedf54b3405df43fb",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "b799ab081703e7821ae5096d2c1abdf14bbdc75e8ea1c4045998c36ed6db9706"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "93434ad579983f4cff639c2b7230c311e0785cc48a25b66b1498e1802be7de91"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "sha256": "ae6f236bd0aef72bad196099aa8687cccff6e01cc3a60e6c32bbad688266f678"
+        },
+        {
+          "path": "assets/JetBrainsMono-OFL.txt",
+          "sha256": "c1ab7c666206842a02b35b30770dac0d7a10156ed401c9defc3f02a754d89e90"
+        },
+        {
+          "path": "assets/template.html",
+          "sha256": "4fe243de7448f83d2123e987db5ec2539b662480a6e3ce3c90deb9e0c9ad11ef"
+        },
+        {
+          "path": "bin/archify.mjs",
+          "sha256": "3cebcee3fa339e3b98deacae8cb9a5570525e003d8823368d304d904ba9ceecd"
+        },
+        {
+          "path": "bin/delivery-update.mjs",
+          "sha256": "24d92f908d91ece10ddcefe979f7950f9250023813c41777022ae5d948aa8e2c"
+        },
+        {
+          "path": "bin/finalize.mjs",
+          "sha256": "766e053afaeaca8045b8a0558f50cb6b685dfe21cb9d00e7776d407d6db364e8"
+        },
+        {
+          "path": "bin/open-artifact.mjs",
+          "sha256": "b0ab5f37c4f4556f76040dc862744afe9d4b65f319f35e1f9b505e0344b9c409"
+        },
+        {
+          "path": "bin/preview.mjs",
+          "sha256": "95bdc09c7ea2679f137bf1bf4248cdb401a54da979ff4a16d518caafeae0070d"
+        },
+        {
+          "path": "bin/recover-output.mjs",
+          "sha256": "b3f7db21b3fc5341326207c1259aa787730120f42179eff50e481b0c6ad1e2d4"
+        },
+        {
+          "path": "bin/visual-check.mjs",
+          "sha256": "b921fb7fbd826b487d6560324a75c933e26df24970bf5f992809b41c18c9b14f"
+        },
+        {
+          "path": "brand-marks/README.md",
+          "sha256": "8b771a16322ce9ea47fdc00b9935e33adf0f3af608f2d735235443e15ef622e2"
+        },
+        {
+          "path": "brand-marks/catalog.json",
+          "sha256": "e1a6c555cbf8ea36fb8100a4a25824e7ab87bebe9871e450ba05b6dea3b036d6"
+        },
+        {
+          "path": "delta/architecture-delta.mjs",
+          "sha256": "80f25a93c1ae6f40ebd6c066a3cfbff468fc48f258755d3740f6347a45ebe7a8"
+        },
+        {
+          "path": "examples/agent-run.lifecycle.json",
+          "sha256": "5ba36f5ce91ed428cb48b599e275424916d82b619b9a3231cbd1bbc3966fc54b"
+        },
+        {
+          "path": "examples/agent-tool-call.workflow.json",
+          "sha256": "d67965d50872c97e4ff3476271e645bf19fab6b3ab44e111bdb44b063e3aa36f"
+        },
+        {
+          "path": "examples/archify-dev-activity.timeline.json",
+          "sha256": "e9c8d76528e8c38a68d9a8df2499c462f6b9633292ea43bf33350546ef2fd3a3"
+        },
+        {
+          "path": "examples/archify-repository.tree.json",
+          "sha256": "970617ee844ecfb1bb792c677aa8b85688abfd2cf8ab2365dc03ea9e26e6b9c7"
+        },
+        {
+          "path": "examples/async-job-roundtrip.sequence.json",
+          "sha256": "b8c6c52f1763ede2933c77deb8da59b3e06917bc41d27e66df896136456b859a"
+        },
+        {
+          "path": "examples/brand-aware-delivery.architecture.json",
+          "sha256": "211c126ebdc5f0124617b1067cecfb858143a1a18fd10621d01f5765c7de3b5d"
+        },
+        {
+          "path": "examples/cache-miss-request.sequence.json",
+          "sha256": "f8486daa803fff6c295cecca4604c561fbbf9acb2e83326022b5a87639e8afe6"
+        },
+        {
+          "path": "examples/checkout-platform.base.architecture.json",
+          "sha256": "81d55a2e86fc39f6473b32dfba986a12d3b7a705a95821844865b1dc831c9fe7"
+        },
+        {
+          "path": "examples/checkout-platform.head.architecture.json",
+          "sha256": "eb4ae056035dd3316414a5d7f6599525107b5d1af7bedbd905460ade77daf5c6"
+        },
+        {
+          "path": "examples/checkout-request.waterfall.json",
+          "sha256": "55a5f74699a0f0e44018a4a000556d43c90430b95f39accac6141af8318b5133"
+        },
+        {
+          "path": "examples/class-payment-processors-rendered.html",
+          "sha256": "d94a3ea55770d1cd2685a7ad6bccf194acecf07b505f210ba56fd2d3307d52a5"
+        },
+        {
+          "path": "examples/class-payments-rendered.html",
+          "sha256": "40574bed3eb6ad5ecd1325f41597335676bed7242912f41ae2876af183e5a874"
+        },
+        {
+          "path": "examples/dataflow-product-analytics.html",
+          "sha256": "3ad4b3badbcd6440d1ca06ed87070e7e1ebe851840bcd8651cccd4536ac3f99e"
+        },
+        {
+          "path": "examples/delivery.explainer.json",
+          "sha256": "188cf8777816ac034dd5a92b04bf427b0f1a8dbfa0956ae072b2d4091427806c"
+        },
+        {
+          "path": "examples/deployment-release.lifecycle.json",
+          "sha256": "e3dc105d03c1c9881160006cdace23cb5d8533803e337caf0ec287c64e775275"
+        },
+        {
+          "path": "examples/erd-orders-rendered.html",
+          "sha256": "3d0dcdda77c8436762c0b4e07c52457d5b16543cddc5e6aaf1f47d099b17a694"
+        },
+        {
+          "path": "examples/event-stream.dataflow.json",
+          "sha256": "3bdd77674282009c7c68d588cf8a3c495bc98a3be1b9c45327fd1801a6f83a23"
+        },
+        {
+          "path": "examples/example-rebuild.waterfall.json",
+          "sha256": "77d610013a5aab031df739c207b66ebc26e1740371b51da06956ecf06b5e9929"
+        },
+        {
+          "path": "examples/holiday-planning.workflow.json",
+          "sha256": "b98354f921ca45842fed235db09fd4f19d94adc16865876f438c0d699d05e1ea"
+        },
+        {
+          "path": "examples/incident-response.workflow.json",
+          "sha256": "630be98449925d2716ecb8439f404b2bff5fe65ba905b0ad0baea6d96890c526"
+        },
+        {
+          "path": "examples/lifecycle-agent-run.html",
+          "sha256": "c31f00939790af2b9f417d2dd440683382cd3f49c7d91d13953b5b1bebdf755b"
+        },
+        {
+          "path": "examples/locales/de.json",
+          "sha256": "77975293855578923fbbee29f478d9d84002c04d6a7b3e22cd9db8cf3fb414ba"
+        },
+        {
+          "path": "examples/locales/fr.json",
+          "sha256": "ea1af868932eb22761094a4950b769fd0634430fe706fc4ea4335eca7f0529bb"
+        },
+        {
+          "path": "examples/locales/fr.partial.json",
+          "sha256": "8958a8354ffccce2ce63ac21b3f8a0f131086f532832445a3fe7feff02200397"
+        },
+        {
+          "path": "examples/locales/it.json",
+          "sha256": "be8cd15fcd0311521dc8ae1f35bbcf8e33a180e20e5ce94fd0d65dec4e147e6b"
+        },
+        {
+          "path": "examples/locales/ja.json",
+          "sha256": "bb6d66d7e1126c5c622423317a536728820d3fe686be90d0c9cc8f6ca4ff3e67"
+        },
+        {
+          "path": "examples/locales/pt.json",
+          "sha256": "8e3c6a054183e96465bd882bc23d38eafe19c0484eda5709f4e2b37e132e0731"
+        },
+        {
+          "path": "examples/locales/ru.json",
+          "sha256": "ea673bf7156d87ac43d754839155a1a145aafa481b5de540e04d1f8d3ec008d3"
+        },
+        {
+          "path": "examples/orders.erd.json",
+          "sha256": "1777a374647084466f4d7ce3a968004be6ab70ac9cf82459b96bed7c556cdfdd"
+        },
+        {
+          "path": "examples/payment-incident.timeline.json",
+          "sha256": "c1f535b3cc915ddd47ecd7df4e3ef02c441c8c3191daced5cf4422cff8dec95f"
+        },
+        {
+          "path": "examples/payment-platform.tree.json",
+          "sha256": "1e99f37b3845d67fa97c9a2ff33109981c23bfdb0d03ba05b7d92944dcdfc61f"
+        },
+        {
+          "path": "examples/payment-processors.class.json",
+          "sha256": "98742b997db4782981460e8110e5fba899d8500c92c086aa867c5c62c3b89222"
+        },
+        {
+          "path": "examples/payments.class.json",
+          "sha256": "afba837f97a041e14687cbe8893523232c4afad7afd922d9b128606d1b3f12c8"
+        },
+        {
+          "path": "examples/product-analytics.dataflow.json",
+          "sha256": "8a635db9e51a5b1a8d2955b9d66f5b9a450e0a298432ce8f2e2f0be11f372e05"
+        },
+        {
+          "path": "examples/production-deployment.architecture.json",
+          "sha256": "610a5614667e8f108bdcf1769c9d7af5c3ce0fb62be3ea50550b10eb752e4bda"
+        },
+        {
+          "path": "examples/release-delivery.workflow.json",
+          "sha256": "dbd5c174af66296caec372e7214cf4df7158b50a563508e16826b95ab8d1cd6c"
+        },
+        {
+          "path": "examples/sequence-cache-miss-request.html",
+          "sha256": "1d5900665532daa696681210023e08b95d6858c96781b4bbb26c677c301bcd0d"
+        },
+        {
+          "path": "examples/subscription-billing-rendered.html",
+          "sha256": "b4f11e17fda7ed78ef818367f71de4898bb43eafe0a7757f26f4e1277bf16ec3"
+        },
+        {
+          "path": "examples/subscription-billing.erd.json",
+          "sha256": "89945699d92b9cc0ab91263cf38a07c350867d260eacd5d8ba1dc835fe2d22ed"
+        },
+        {
+          "path": "examples/timeline-archify-dev-activity-rendered.html",
+          "sha256": "692d8b48257e227a9ccc6a699bbbdf5a48c07cbcd08557bd8b48c1ecb3848aaf"
+        },
+        {
+          "path": "examples/timeline-payment-incident-rendered.html",
+          "sha256": "222c4995eac9e1ffcfabc1297174504f462149607ead1a281607eaaf9f73dcd8"
+        },
+        {
+          "path": "examples/tree-archify-repository-rendered.html",
+          "sha256": "a000d17dd87414ada14f1e5039e95cb0504f7194529db336d72a2f2369d72a07"
+        },
+        {
+          "path": "examples/tree-payment-platform-rendered.html",
+          "sha256": "1f7b0a95699d6208fdaeda801cfa7e261b8ced13ac17be3de86dd5246987c250"
+        },
+        {
+          "path": "examples/waterfall-checkout-request-rendered.html",
+          "sha256": "aaafa380d6eef4cebd8a7461ac1e7bbeb960b4d445139ce447b86af6caf6db96"
+        },
+        {
+          "path": "examples/waterfall-example-rebuild-rendered.html",
+          "sha256": "873b684dc631e1942979c5d02dfa4d789d24dc2a30a7b32abdd7df533c607006"
+        },
+        {
+          "path": "examples/web-app-rendered.html",
+          "sha256": "37b490991c6eaa483b36bd37b7886ed52fd5a10f2351131dbde8197807c07f73"
+        },
+        {
+          "path": "examples/web-app.architecture.json",
+          "sha256": "95e051b27a9e4a3307e194c0f666fca4af51470be7e2228d400ff48aea5b353b"
+        },
+        {
+          "path": "examples/workflow-agent-tool-call-rendered.html",
+          "sha256": "38220f39f8110f9f0b1fdbd96fd750bd33a3750de45dc2913827e3fc30224c85"
+        },
+        {
+          "path": "explainer/browser-check.mjs",
+          "sha256": "cbbebfca2cb58cde0791f349e4f13490c0d085ce2f8653279139cf2aed334677"
+        },
+        {
+          "path": "explainer/charts.mjs",
+          "sha256": "bb49c5e8e5d6ba70a511d292dbac6a47953a010b67a8563e5f68222c7b220390"
+        },
+        {
+          "path": "explainer/check.mjs",
+          "sha256": "151211edd6f1b842ee63b1aef8682cb68e6237ce3b9e7a81e09667420f2b9b3b"
+        },
+        {
+          "path": "explainer/diagrams.mjs",
+          "sha256": "bb4aae343968db5a5ad70c368ad41dcc9d2ac93f3ace02645059daf33cab16ba"
+        },
+        {
+          "path": "explainer/diff.mjs",
+          "sha256": "0851a6b9715a3f277308cb88c84a5ef5fc943f09a9e0a391a573438fe8a30fbb"
+        },
+        {
+          "path": "explainer/inline.mjs",
+          "sha256": "e024b719a365077b547cb3d50ac9909db7e080ca5bde62387e5d62ead3f819f3"
+        },
+        {
+          "path": "explainer/layout.mjs",
+          "sha256": "656232369fe0394e35f827c1b5295fb8f14d315e7fa53d5f16248440519736c8"
+        },
+        {
+          "path": "explainer/page-bundle.mjs",
+          "sha256": "1d4fc3f65b4eb4207a0c3b86a2968310f931a9b945fcd1fc3021ce98a29f7310"
+        },
+        {
+          "path": "explainer/parse.mjs",
+          "sha256": "dd0d05672e92453b1b1cea31372792cbe03aecdd80f21e2f3aa0eda49d3be853"
+        },
+        {
+          "path": "explainer/patch.mjs",
+          "sha256": "b2721021de474431537705d696325ea01eb946e9095e8476fad1802d2fb5be4d"
+        },
+        {
+          "path": "explainer/prepare.mjs",
+          "sha256": "d8ff050738d7c858d62641b069455482814de0c4bdf7c0872d0a2a663b1b0643"
+        },
+        {
+          "path": "explainer/reader.css",
+          "sha256": "20ae425a84157c2d478241250975e74fca8938b47b85c5414149710ff4a3538f"
+        },
+        {
+          "path": "explainer/reader.js",
+          "sha256": "202d3ad200accd89a1484fe64610d9bc8bb4544c14c3f51522ba74f965b332c6"
+        },
+        {
+          "path": "explainer/render.mjs",
+          "sha256": "415c8c0638f42abc3b96f1b105453780678f1e33a9994f844cfbe4833670f25d"
+        },
+        {
+          "path": "explainer/revision.mjs",
+          "sha256": "29032cab30c03b2e4c48730f40175e0e59aa4794893c02e5ae38668776c18288"
+        },
+        {
+          "path": "explainer/sources.mjs",
+          "sha256": "c6aae2ef90b6e49d16c1ccd5cfc5351a7716b8f9150e1c261dbd6ca8b8ca9ab5"
+        },
+        {
+          "path": "explainer/validate.mjs",
+          "sha256": "4e14063082b4bced482e0d2f771de5b29ef805677fcc354dfd283b9e16bd1b0a"
+        },
+        {
+          "path": "explainer/vendor/pele/LICENSE",
+          "sha256": "311bccc30de6f7b9cbfb64232bb0c911ccb2191abe316550813ae25b2c7925b9"
+        },
+        {
+          "path": "explainer/vendor/pele/README.md",
+          "sha256": "47cb1894b1d248c49b7d79590a97fba294b090a7f2bac178a85baa79f2dae0d6"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/3DKXF73K.js",
+          "sha256": "5901afffb8349d0cb095e93494e8d3f36f09497b28a9255e066c52b6ce0a6c31"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/42UTT654.js",
+          "sha256": "365a5dcd61413ed715d375c053466ef89652aaa5065214720045d22d3198d7ed"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/DKTLEL5E.js",
+          "sha256": "91864eed78a6a3cc9791d20fb9b61fd8f458c12101662883cd23e755fd2a4cb6"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/EEIX5ZYH.js",
+          "sha256": "1e097466abf989151f92368e6ff7cb463e2ae191724e307ca2d004a58126b651"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/EJ5KOXYD.js",
+          "sha256": "cb84c22da57a11eb988d4e671b12ff17018923619883ddf49cd0b0ab270c4bbe"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/GUJTEFZK.js",
+          "sha256": "e8584ce5872c50c6370efc1fbce911848506d84ff6fa88e4f079f412b5e2f068"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/IZOKQ2GT.js",
+          "sha256": "80d3ebe446ae5447bf88c7f01b762478f51ce8cdd6e270b90f4b58534fc363f8"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/L4LY553T.js",
+          "sha256": "d574102b3e5499e752513c2ba75f152cd447b9f81d877ddffd37faed0e7dae16"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/MSKIJHB2.js",
+          "sha256": "94317f9dabbe5793c8ed57a298b5a68474fcca6c62ecd07fabd9a3c6f15d3e23"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/RVARI57O.js",
+          "sha256": "3dc7661b060578920eab83aafd1fa261886e7e331d44f8f5d2f34bd0804027a3"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/UKSIWDDN.js",
+          "sha256": "c0f5a984eaefaefa550d525670624e9d426bb7280ba33fcb5f9fa8adca804fc3"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/UPTXNAXN.js",
+          "sha256": "f2fc18109dfb5ca72ea43c7951c4ce36d20a890b2fefb2d531fa751aa9911b87"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/XTDUIGUI.js",
+          "sha256": "1ed02bff674691de6cb6ce6b3863fb021b1508f33b992515faeac876d0716c39"
+        },
+        {
+          "path": "explainer/vendor/pele/chunks/YAYTP6L5.js",
+          "sha256": "9246835c2b1544ab95dd1b89b7ce4cfaa2a89aa26873f3d52f7e4a17ef957da6"
+        },
+        {
+          "path": "explainer/vendor/pele/core.js",
+          "sha256": "ac428c1ca244f030f363e0d0f12e623df92c1439d2a211310d1ff73f0ed224a4"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/pie.js",
+          "sha256": "a2bc92d2f8842b476cdb8a039455493db2c71d6a4e3a1b3dc97cfc1f409056d1"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/quadrantChart.js",
+          "sha256": "9ac8fc714b3973854efdd960fb6831c973e72624bb9b0bc091ada8958794ebfb"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/radar.js",
+          "sha256": "379748e709992f9e242028ad4a1b103f75ad693a84331c8fc33df0f258a7a9fe"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/sankey.js",
+          "sha256": "a789e591ba81fd434418a64561005caf50760f11cbaa9d4dd589e777bbfe8e36"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/venn.js",
+          "sha256": "e4bc9943916a8ce8b07d0848eda99d38f7e8334708998a5d951acf27a5f4a059"
+        },
+        {
+          "path": "explainer/vendor/pele/diagrams/xychart.js",
+          "sha256": "817de14381d9ba413dc70947824ff2538ba532c232592035a5b836094434e4bb"
+        },
+        {
+          "path": "explainer/writing.mjs",
+          "sha256": "1030bc5b09f932e805f87390d8b51a1a23bc8dab2cc02068873621e26da8781f"
+        },
+        {
+          "path": "locales/README.md",
+          "sha256": "f1f59d12d490927bfdb804b1a71e76ea057f2ef8dc1d98f9aa053343e0f80056"
+        },
+        {
+          "path": "locales/ar.json",
+          "sha256": "4a8d5c821a16fa94c97b68784481841c323e288d841acd84ac8415c063483a9f"
+        },
+        {
+          "path": "locales/en.json",
+          "sha256": "1e8b43d8ba6d8ae75c2b393b2edb43cac5e142f33cbc2d1a2351e0e8baf9e1aa"
+        },
+        {
+          "path": "locales/es.json",
+          "sha256": "f2b971994cb9f7091758e605931b4b4959103ed0090916fe281bfb2f2e1e5cc7"
+        },
+        {
+          "path": "locales/ko.json",
+          "sha256": "b7f2be52c61e4ced665ea62bb0670b4c2615a6c706127246a44bbcffdf65f8be"
+        },
+        {
+          "path": "locales/manifest.json",
+          "sha256": "9a377676b5d16f97a6a1f9326aadbb447321e9ceb5744718181796ce3dcce0d8"
+        },
+        {
+          "path": "locales/zh-CN.json",
+          "sha256": "83d870452e9ff3459a3cae88be6900d9a98b268e6cfba94b608a7c10f484e485"
+        },
+        {
+          "path": "locales/zh-TW.json",
+          "sha256": "0db367aec82cf92b08d4335d5ed021480801f7ae79b1e2c1a0c79b27d4eafb2e"
+        },
+        {
+          "path": "migrations/workflow-v2.mjs",
+          "sha256": "0eec02057b8490afca9b093de5ea6e636c7fad2361cd28a04cf2f3e4b6197434"
+        },
+        {
+          "path": "package.json",
+          "sha256": "8b4afe00581e6c08965c9dfc51fab8689989060663209f95c73cb2ab6d36e214"
+        },
+        {
+          "path": "recipes/scenarios.mjs",
+          "sha256": "1e93ba15d0782be535251bfb406cf8cc056291d84d77d33ca9dca01df743528f"
+        },
+        {
+          "path": "references/architecture-layout-repair.md",
+          "sha256": "6c90caa232c004fa43b8770c745b83672919deaf8909f2592a3ad5fcd4031953"
+        },
+        {
+          "path": "references/authoring-contract.md",
+          "sha256": "c7c9918ee28e213defd4cb504f0440ae366a8db4665938d2a0db0b62da565901"
+        },
+        {
+          "path": "references/authoring-defaults.md",
+          "sha256": "11a2c60b31cb8a4bc19e83ff2e8351c1b5af93cfa091512e6d053a13288eaf6c"
+        },
+        {
+          "path": "references/brand-marks.md",
+          "sha256": "d6e1a6ceafd07e48f27caf01655ea642365a5416ed0543b4022ca62750b58f0f"
+        },
+        {
+          "path": "references/delivery-contract.md",
+          "sha256": "0e283a418871a19c7adcc493c461ae6180e9b233f14ad95a19a9c15e109d2415"
+        },
+        {
+          "path": "references/explainer-authoring.md",
+          "sha256": "722c126f05192da499f75468e9c1b3001daa4a844894ebf45a854b6687a4af18"
+        },
+        {
+          "path": "references/repository-authoring.md",
+          "sha256": "c1648fc0c1b85a3a9bfbf3a8919dfa741ff0b5a55ea310d1fcacbf6ee837e139"
+        },
+        {
+          "path": "references/update-awareness.md",
+          "sha256": "16b437a47790fda48f0e74f6aa053715fb06b6e8cd1ba994d1c01ffefa12a76b"
+        },
+        {
+          "path": "references/viewer-runtime.md",
+          "sha256": "7d35ef52a8f47e77e8ec827cea7c71219bf1aafa53b5ef72ad4f1e1437f882a4"
+        },
+        {
+          "path": "renderers/architecture/grid.mjs",
+          "sha256": "f6de99c32436feed3378b0ddef516bb4732ff27a89c543b50635d4d14a15a55a"
+        },
+        {
+          "path": "renderers/architecture/labels.mjs",
+          "sha256": "3a0066a987d8ad20121d0f7261d8bcfd3659443a335ea5e47938e7779ae12d31"
+        },
+        {
+          "path": "renderers/architecture/render-architecture.mjs",
+          "sha256": "50bf6f0748446ba99c4236e29e2e39755d5a2b8894fb598f104f7b3107063ca3"
+        },
+        {
+          "path": "renderers/architecture/routing.mjs",
+          "sha256": "908ddaf85caaa2d5d4a17c0544489ad9500614914c64a1d2ee2b96c4cc9ad4b3"
+        },
+        {
+          "path": "renderers/class/README.md",
+          "sha256": "33074161e184a98dbb2b65d0ee308779b216a3c97dda4dfaa2bd6e2fb2e9f526"
+        },
+        {
+          "path": "renderers/class/render-class.mjs",
+          "sha256": "e4943c1e91062aba7c72715e4887165f03908de03a1c99dc71f296bb0d1214cf"
+        },
+        {
+          "path": "renderers/dataflow/README.md",
+          "sha256": "3e9c8368e5aab1e686817745628d6da6e584b5009973ae1ee8e4fbea1f324ba5"
+        },
+        {
+          "path": "renderers/dataflow/dataflow-compiler.mjs",
+          "sha256": "e27a9b69876927b7285ce14569d22b92e32e8173fd953184ac13a8a02408e257"
+        },
+        {
+          "path": "renderers/dataflow/joint-label-routing.mjs",
+          "sha256": "8d1fd73d0d6055f6c551dcbc7ea3b01e4b801216c3101b2246e4172a564beea8"
+        },
+        {
+          "path": "renderers/dataflow/label-capacity.mjs",
+          "sha256": "187af128f09630e512931b22bb301115d2a4d72c925cf02d3fc4736fb1846cb9"
+        },
+        {
+          "path": "renderers/dataflow/render-dataflow.mjs",
+          "sha256": "befc8bdacd86c07dd0b65a4b9635632a1246dd8dae7cb98dcf6d31dde361da2c"
+        },
+        {
+          "path": "renderers/erd/README.md",
+          "sha256": "2dce4b5da474d2b1f4190d34f5f3b625e2a479460da8ee89b8dbe0481e9245f4"
+        },
+        {
+          "path": "renderers/erd/grid.mjs",
+          "sha256": "1aa4644d8ef13fdebe5adf48377c0755222a0288f6cc487faf052d7957a78a32"
+        },
+        {
+          "path": "renderers/erd/render-erd.mjs",
+          "sha256": "ed180a39c00bec377bde0c48c8af798bb93e97d0cf006dd321a9ba14d5c50d7e"
+        },
+        {
+          "path": "renderers/explainer/render-explainer.mjs",
+          "sha256": "a646f6e5450bfcde6bd0aac23487d0f9d7feb947b307079f9a6f2df27087fe93"
+        },
+        {
+          "path": "renderers/lifecycle/README.md",
+          "sha256": "42aa4d37721661d1f59babb7e6467d910c7569d8573add2679c04942f5ebd72a"
+        },
+        {
+          "path": "renderers/lifecycle/render-lifecycle.mjs",
+          "sha256": "b700af01fa3848d7dfdf492b9efaccc7b384e6ad509a75bf9ac9af2038e4efc6"
+        },
+        {
+          "path": "renderers/sequence/README.md",
+          "sha256": "d93cdf05140ae60f8a5df495da5cd5c9dc492f2338760c53626f3943454d00b3"
+        },
+        {
+          "path": "renderers/sequence/render-sequence.mjs",
+          "sha256": "249689c4de5636bf7d746a04b3369f5576b91f76ea533502b313f943da4a8a95"
+        },
+        {
+          "path": "renderers/shared/atomic-output.mjs",
+          "sha256": "f804d66d1801ac2dadc9d0a4c334645cfbb7a8cd1a7de112ddfb952c056a580b"
+        },
+        {
+          "path": "renderers/shared/automatic-labels.mjs",
+          "sha256": "3f3b63cd9cfd242968a739ca703291d7788567ec5699b5e7d6a11a4079e15917"
+        },
+        {
+          "path": "renderers/shared/brand-marks.mjs",
+          "sha256": "87436fa956c98dc9bbabf826d5f254587c1b3e7a829883f4098e04c62f4b5345"
+        },
+        {
+          "path": "renderers/shared/cli.mjs",
+          "sha256": "9df5e6efb3dddc50b72d0daf3ca9d2b611bab31c5f1076f6769bd94999c5688c"
+        },
+        {
+          "path": "renderers/shared/desktop-readability.mjs",
+          "sha256": "55ee7aba702d7883a08b6e54b39b00d5a17918a0c6bcf0c0fea19034f4de8990"
+        },
+        {
+          "path": "renderers/shared/diagnostics.mjs",
+          "sha256": "4635119e65f77f28f0a81c038642c7d7de318ba9400073f37decd59df258dcd6"
+        },
+        {
+          "path": "renderers/shared/engineering-profiles.mjs",
+          "sha256": "7e99f9d5423f66cc9ab6224da56dc2d5aa6c6faec29178034794e9db6b5b2889"
+        },
+        {
+          "path": "renderers/shared/generated-brand-marks.mjs",
+          "sha256": "0f157d229c12df6f53763a3b88684baa5803a52484c49c4d34ec40b8743beea2"
+        },
+        {
+          "path": "renderers/shared/generated-validators.mjs",
+          "sha256": "f9e6d4f4ef5c5ab98013563c7ea1d27d58c67111832bd4167989dc0c88405181"
+        },
+        {
+          "path": "renderers/shared/geometry.mjs",
+          "sha256": "818f6c000595f11a915cce2f73b5deb1a82ececf6c578a22bee70099988ea7a5"
+        },
+        {
+          "path": "renderers/shared/i18n.mjs",
+          "sha256": "1e6601157babd70c455dcddc93868f4665e56e7e723708d95dcc791dd1b636b9"
+        },
+        {
+          "path": "renderers/shared/layout-report.mjs",
+          "sha256": "979da7226c5080cb16fb352236d5705cc79c06c15d0a3550b95963af02c63b6e"
+        },
+        {
+          "path": "renderers/shared/legend.mjs",
+          "sha256": "c33fcb54cc5aa60d788154036daa165f85d2e06d28aa9f1d4a73705fa278de70"
+        },
+        {
+          "path": "renderers/shared/node-card-style.mjs",
+          "sha256": "80a0d473b936ee198e73cb89addd43a6344fb81da94f9fc88c53ae759cbf748d"
+        },
+        {
+          "path": "renderers/shared/output-path.mjs",
+          "sha256": "7422139101abd93493918898a97bed06f2212bfd411d3514cd229b6d57a3797e"
+        },
+        {
+          "path": "renderers/shared/owned-temp-directory.mjs",
+          "sha256": "fb94515f8cd4b6b28799a7367745235822e2169534b8200791600ce7c3953a0e"
+        },
+        {
+          "path": "renderers/shared/path-semantics.mjs",
+          "sha256": "4ef002af9061c06634a07de6d199fd7d13e6c50561c792fd018118bf3e065f52"
+        },
+        {
+          "path": "renderers/shared/portable-path.mjs",
+          "sha256": "26130cbcdae9b9f082486aeb5feec9c5fe57905d2ed8e30c8081b9710e2e8ac3"
+        },
+        {
+          "path": "renderers/shared/repository-evidence.mjs",
+          "sha256": "d1e14f82ba07eb4df9fb0986b4d0c02110d1eaa05a4454f33e92bd1e5dfdc8d3"
+        },
+        {
+          "path": "renderers/shared/repository-location.mjs",
+          "sha256": "344044d8240a093919894bd63278652bd01b3717c5b49fb174a6f77bea28b839"
+        },
+        {
+          "path": "renderers/shared/route-quality.mjs",
+          "sha256": "c9cb9aae3a1623667f0490ba755bbc0ba57e5957e7ea56379d872eb1f2bb2090"
+        },
+        {
+          "path": "renderers/shared/sidecar-path.mjs",
+          "sha256": "c23cac8bcc265a74e2920c58d0968d1ffa06c1328bdd9cfd07755d4df2f22974"
+        },
+        {
+          "path": "renderers/shared/spatial-grid.mjs",
+          "sha256": "e728bf6a729972f95ae09e368ea370490d10ff94d49debe2fab2e9bac923ee1a"
+        },
+        {
+          "path": "renderers/shared/svg-path-analysis.mjs",
+          "sha256": "4c498ef5ba090a2d658c2ce3d80145f4cc63da9462f547b621206250096957c5"
+        },
+        {
+          "path": "renderers/shared/text-fit.mjs",
+          "sha256": "ebd499072ef4fe31c9aabf45a01c204a9c2c142d45f087c3240673f90f477038"
+        },
+        {
+          "path": "renderers/shared/utils.mjs",
+          "sha256": "d0e8692b8acdc6993578c5d4aeb67065effdf5bf4cf2cd127bf561c677af38f5"
+        },
+        {
+          "path": "renderers/shared/validator.mjs",
+          "sha256": "f5cf5b9aa3623a456e9a07f0c5f08fe09a0a67d3ba356e32937c3287c75c3bc9"
+        },
+        {
+          "path": "renderers/timeline/README.md",
+          "sha256": "377cb185f8ddfca2a0349d122e736a6fc832d5c8e0555039f0e0bcc4f5038c86"
+        },
+        {
+          "path": "renderers/timeline/render-timeline.mjs",
+          "sha256": "125fc65b2cd2ac725a3ad655f4dcb8f14e158e21d04af72924839830181e294c"
+        },
+        {
+          "path": "renderers/tree/README.md",
+          "sha256": "c1afbcb94e026910987199776d76896b58b7947db2f94d90d1da608e44ca9a35"
+        },
+        {
+          "path": "renderers/tree/render-tree.mjs",
+          "sha256": "4e2ba7d4a3f567760c3801e7439bd18fa28acfe51e581479bd56ad549e240b68"
+        },
+        {
+          "path": "renderers/waterfall/README.md",
+          "sha256": "13afed9d91d02bdabea0b920c23cd6ee851a42e53d30e80042e2aee4f845ecd0"
+        },
+        {
+          "path": "renderers/waterfall/render-waterfall.mjs",
+          "sha256": "df95d32ef3b790c9b830f5e7a5741d71ae14b9f602d65db84bc60235a74d3290"
+        },
+        {
+          "path": "renderers/workflow/README.md",
+          "sha256": "d6f13218145cf373fafa6005eb718c1564a424b486253048b11d242c33c445aa"
+        },
+        {
+          "path": "renderers/workflow/render-workflow.mjs",
+          "sha256": "304df0df006c44ab01ad534f34cb48cbe163f7ed2e7e2e8490dfee88827d3aba"
+        },
+        {
+          "path": "renderers/workflow/workflow-compiler.mjs",
+          "sha256": "a84fa7570341166e9190892b4ab9bd5fd1ac63290cc9ec5a48dcaaf8a4183a3f"
+        },
+        {
+          "path": "renderers/workflow/workflow-migration-geometry.mjs",
+          "sha256": "47729f32eae163c05c249cc0a663949fae745a9c74fe9548c83eb361b31e285a"
+        },
+        {
+          "path": "renderers/workflow/workflow-placement-repair.mjs",
+          "sha256": "3ee6e83c3a5279e1af2b06db39fd39c3348264b2daa159a94cda3e1d8de5ed7c"
+        },
+        {
+          "path": "schemas/README.md",
+          "sha256": "dcb6e86f3d1591004c669764ec62558bd01384c2e9155bb82d8a3be1c3842e05"
+        },
+        {
+          "path": "schemas/architecture.schema.json",
+          "sha256": "aef992b585a18a4016b8207254fe43a6227b0d45322a1ba95e0f69a80fc8f8c1"
+        },
+        {
+          "path": "schemas/class.schema.json",
+          "sha256": "0ecfb9948563166c4f23df784d618ddd93f003ee61402a9349c5f63b0284ff2a"
+        },
+        {
+          "path": "schemas/common.schema.json",
+          "sha256": "3bb6bde1122ebc1d47f73cf12400015baa0c7e5650e5780b0e89773d7ead4def"
+        },
+        {
+          "path": "schemas/dataflow.schema.json",
+          "sha256": "f01b2faafa5fd6e300f6b5045eeca70f70226552411180442d6e528dd45172f1"
+        },
+        {
+          "path": "schemas/erd.schema.json",
+          "sha256": "83aef0349f3cd415a00da4ed30c7864056dc9599627e004e6b7168ad4149ebc8"
+        },
+        {
+          "path": "schemas/explainer.schema.json",
+          "sha256": "9fc54042927602b1c37dd130061989f7d9a90718888ad75943275be2fd7d1371"
+        },
+        {
+          "path": "schemas/lifecycle.schema.json",
+          "sha256": "151befae29a68833ba26e7848769e89ab9dc71fc5bba234a91a62307338cfa49"
+        },
+        {
+          "path": "schemas/sequence.schema.json",
+          "sha256": "97af565f8b6d8fbd4b5be40ddb52f4943accab2cf4f386d695e800d367dd4f89"
+        },
+        {
+          "path": "schemas/timeline.schema.json",
+          "sha256": "4a657251d454bde44ef4697c960fe7503eeb4db4e50f9540c7e2d54046dd0769"
+        },
+        {
+          "path": "schemas/tree.schema.json",
+          "sha256": "65c794a1f522ce336afe787bd59adb63a81f57a5bba3ac266f2bae5c3a07b8c3"
+        },
+        {
+          "path": "schemas/waterfall.schema.json",
+          "sha256": "7c3000534b491ce86b96ace528e9bd5a453ba3d14294a724da3ece4bd83b51f6"
+        },
+        {
+          "path": "schemas/workflow.schema.json",
+          "sha256": "e13a1ce3b841376c8c6f6b9cb8152f8c0c7d70a77a2960fecdfe9025de83dc25"
+        },
+        {
+          "path": "scripts/check-render-output.mjs",
+          "sha256": "dcfb6c8eccd08bd7ce4b9fc1928cd4c3a6794b49a512e0afa1aea87e1e332195"
+        },
+        {
+          "path": "scripts/check-update.mjs",
+          "sha256": "a1ed8be99a484d81964c9d66938f813fb3726690aace3e982e777ea8bca5ebbc"
+        },
+        {
+          "path": "scripts/delivery-update-child.mjs",
+          "sha256": "ec231c992ab9b548c735698f209cb350d4b137aad2a5e8cb1374e692b6b38064"
+        },
+        {
+          "path": "scripts/render-examples.mjs",
+          "sha256": "c2c99c4153cf21f0526cf3f041c1d81716017be182d404173f8961fa494e8c8c"
+        },
+        {
+          "path": "scripts/update-contract.mjs",
+          "sha256": "b6eb5e18ebea770c0a0c2cf2ba45d122d85abe61e94b9a5426602a9f84910b31"
+        },
+        {
+          "path": "skill-release.json",
+          "sha256": "1ea25551e0359e547267d40e83812ffd1a7bdf7398826b65f2a2fcf1a11ba596"
+        }
+      ],
+      "upstream_path": "archify.zip:archify"
+    },
+    {
+      "name": "ask-matt",
+      "local_path": "skills/ask-matt",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Rewrite code-review skill references in SKILL.md."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "PHASE-BOUNDARIES.md",
+          "sha256": "a8aa20158609ef39e2b308b6ba0660c91066838d07a867202e63a7744a88a3ed"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "86c00362158c9ec0bb523ccb7ba83710a1546f0962d17d94a60d98ffb29a30c1"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "bdffbc5a0a99ed1b6ef3253d251d755fd18162b9845972e380007f844b09b05c"
+        }
+      ],
+      "upstream_path": "skills/engineering/ask-matt"
+    },
+    {
+      "name": "codebase-design",
+      "local_path": "skills/codebase-design",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "DEEPENING.md",
+          "sha256": "f3dd099ce99289bd213914d8ee3e2429b78309c3957ca4583f7659551b1d53c1"
+        },
+        {
+          "path": "DESIGN-IT-TWICE.md",
+          "sha256": "52b52e75655a27aea59c6966b410bac82448968ad46ef1ebb9f07c274e3ae010"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f"
+        }
+      ],
+      "upstream_path": "skills/engineering/codebase-design"
+    },
+    {
+      "name": "compose-design-catalog",
+      "local_path": "skills/compose-design-catalog",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "87f9a91fa95cbb09fe49625600fc9f06afd3eb6a0457ea305d2de3004e626238"
+        },
+        {
+          "path": "references/delivery-branch-size.md",
+          "sha256": "bb73c9a35f733259e947f2580cb9fba850bb695fd68ea80874589fc0716db793"
+        }
+      ],
+      "upstream_path": "skills/compose-design-catalog"
+    },
+    {
+      "name": "compose-preview",
+      "local_path": "skills/compose-preview",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Retained repo-managed CLI installation note; now use current upstream --cli-home flag plus --cli-only and --no-modify-path. Do not invoke vendor skill updaters on managed source links."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "0ba64618e446f9b80bc40593f5c776d128d3e3c293600e1527fe872db0383418"
+        },
+        {
+          "path": "references/a11y.md",
+          "sha256": "f03e2dc707dbbeb42d409fe3c6d051349085f00c67d49e5d64ef8ad52a211c3b"
+        },
+        {
+          "path": "references/agent-cloud.md",
+          "sha256": "d95cae613d23022ee1080ec105680e3b19f42379d472c2bc18a5b389b0bd9d97"
+        },
+        {
+          "path": "references/agent-loop.md",
+          "sha256": "b07942752b4d0bc7761c3943555cc3684f0271118b7042a993e883111b57a121"
+        },
+        {
+          "path": "references/capture-modes.md",
+          "sha256": "2e53c29269ff4c96e834d83a7907129b4086a67c3be8d72ab022aa681f64756f"
+        },
+        {
+          "path": "references/catalog-mcp.md",
+          "sha256": "3276367c39bb27b0cd1972edf9ae8a4bfcdc9eaad57477e6b97e2c3da6b7f72b"
+        },
+        {
+          "path": "references/cli.md",
+          "sha256": "f4361c489066a7c78556f768fbde58b25673708b3807ad62451763755645616a"
+        },
+        {
+          "path": "references/cmp-shared.md",
+          "sha256": "055e99e9054ff7a89d5a0687776b0685e8f8b020119c9a1af8137d150717c625"
+        },
+        {
+          "path": "references/data-products.md",
+          "sha256": "2b3df085e3a2b12ab340eccf94f5fc3c08f2b97da97cfdbd749d88952a4acf59"
+        },
+        {
+          "path": "references/design-guidelines.md",
+          "sha256": "3b753b96714e4ff3180fc9a85193e59e806d722d5bc4f38bc1ed5d726673ccf4"
+        },
+        {
+          "path": "references/display-filters.md",
+          "sha256": "f39033f4bd549e59d3fc94cfae461729c05b71d11ec1edcaac46c8fad91f8fc0"
+        },
+        {
+          "path": "references/mcp.md",
+          "sha256": "eea69520346711f12779da8faea1b44c2224fbdd122ff86d24188e7422176aa5"
+        },
+        {
+          "path": "references/override-knobs.md",
+          "sha256": "78c710099ac8c6c085449b23f6bf135fde0ca86475fe5a756ad8c23fe6d40d13"
+        },
+        {
+          "path": "references/permissions.md",
+          "sha256": "e6be5c3dc41737683cf61b1ee9a0ea25907c0fcd5da6436cfe1b89adf6d41914"
+        },
+        {
+          "path": "references/remote-compose.md",
+          "sha256": "c0475717f58756e881706098ba5c44462ff37b29e2b0fc0e20597c58ed233cf7"
+        },
+        {
+          "path": "references/resource-previews.md",
+          "sha256": "7e0805edf7855e0764b48ec5f9eeda3e825fd9dfba351b0ba7c37bd3e19ffdfb"
+        },
+        {
+          "path": "references/runtime-permissions.md",
+          "sha256": "5258e4196ef161c4bbeb0c6a01a65a93e08dcbb7b4170a122e71aae772e72547"
+        },
+        {
+          "path": "references/server-access.md",
+          "sha256": "001c4fde043d1e61c8e4a2efc0630298331948822a767967cff6b21cfa7e1f04"
+        },
+        {
+          "path": "references/setup.md",
+          "sha256": "fc112fa2dd20195ef3fbb054d8d1f596acd0e51912e734e37ccec25b55ba7650"
+        },
+        {
+          "path": "references/state-hoisting.md",
+          "sha256": "9d029c13520cc647b8aaa1b653e4ce336efe285961420d9212fa6bd1858ec548"
+        },
+        {
+          "path": "references/vscode.md",
+          "sha256": "0cfcc983d81696da89cf29bf254b618c253f053c3f03840232f15fe5a4e8dbb6"
+        },
+        {
+          "path": "references/wear-tiles.md",
+          "sha256": "9b3357f2dba18efabc35b2f8ff8aad1f7070dea1af7599e8fd1729575b5fa23a"
+        },
+        {
+          "path": "references/wear-ui.md",
+          "sha256": "ce8603b069a1a06a59c4b311b19338c17c0d2ec790be4ddc1bce6eda2104ab24"
+        },
+        {
+          "path": "scripts/compose-preview",
+          "sha256": "9e6c52fb88ce008f8877efb5da425aafc03c47bfc5d4d2bb270db1e3ff38aced"
+        }
+      ],
+      "upstream_path": "skills/compose-preview"
+    },
+    {
+      "name": "compose-preview-ci",
+      "local_path": "skills/compose-preview-ci",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "14e1e99bc2ba6de9f159199737045aa658d7179f479d270a0c02c89a67adf698"
+        },
+        {
+          "path": "references/cost-and-scoping.md",
+          "sha256": "2b3521d21ab8c8225ef20be38a45c7a6efb2f1fc5e69c4b435c481e37c1c95e4"
+        },
+        {
+          "path": "references/fork-prs.md",
+          "sha256": "415b1b670677137fe10466f73674a567efb5ff4f1e8227273ff9f0b881da710a"
+        }
+      ],
+      "upstream_path": "skills/compose-preview-ci"
+    },
+    {
+      "name": "compose-preview-design-board",
+      "local_path": "skills/compose-preview-design-board",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "c55bd74ee31c7fb94391528811cce81dea783f5d9a97c393a81f806564504bbd"
+        },
+        {
+          "path": "scripts/build-design-board.py",
+          "sha256": "ec12e492a45a1c9acb42f511d78309974169b1a0981db3db0d13dea180a58fd3"
+        }
+      ],
+      "upstream_path": "skills/compose-preview-design-board"
+    },
+    {
+      "name": "compose-preview-review",
+      "local_path": "skills/compose-preview-review",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "d69130a0fa29cdcd462f03182ad6ff602fa9216ece7492a3be0dc26b51fccb5a"
+        },
+        {
+          "path": "references/agent-audits.md",
+          "sha256": "dc975b9d615766dc88ac1fa9bdbafe7e73ba445cf7e82db86e583a53a1fe47ef"
+        },
+        {
+          "path": "references/agent-pr.md",
+          "sha256": "70b2d72ed773928a040d750b82fa352265386fab46fa08e2e5a193316d9901a8"
+        },
+        {
+          "path": "references/ci-agent-sessions.md",
+          "sha256": "f7cfa2d6604f37de5f5903afaae68551565a806984ae8474bcdbd07da763c751"
+        },
+        {
+          "path": "references/design-parity-lifecycle.md",
+          "sha256": "50e691594e1e41078728d895ed14fb8a255ba932db489e8b687453c4cb8eb24c"
+        },
+        {
+          "path": "references/mcp-review.md",
+          "sha256": "7e8dba81e53a513be7676c083299d86840c49dae7dc8d72865a41d433fa6ab8d"
+        },
+        {
+          "path": "references/stability.md",
+          "sha256": "205382b3054a425665a88f374e8f1197c243dcbbea8d520f83c78d6765b58966"
+        },
+        {
+          "path": "scripts/run-agent-audit-samples.py",
+          "sha256": "e0275ff83ed82635ce7e7279e73cc58ccff51b289fd44a0ba62f2d2e4597c955"
+        },
+        {
+          "path": "scripts/test_run_agent_audit_samples.py",
+          "sha256": "c2cc948c7a77543d0af4d6f7dacd657a9b5d2f22cb390021db802ef38beb4a74"
+        }
+      ],
+      "upstream_path": "skills/compose-preview-review"
+    },
+    {
+      "name": "compose-ui-builder",
+      "local_path": "skills/compose-ui-builder",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "1d30795136369aa86e41e5f3c0e35f21f5a0b8609fe67ca6017c493bd355acc0"
+        },
+        {
+          "path": "references/local-design-to-code.md",
+          "sha256": "9037164b03dcd0df7f773c06796ec4c1f2ca6e8661aae3a6340b660ae4675856"
+        },
+        {
+          "path": "references/m3-catalog.md",
+          "sha256": "48b1492280e12c4ea15d7d481ff41c7a2aaae2bd3f6b33c7fd991ea4cb4e068a"
+        },
+        {
+          "path": "references/remote-m3-catalog.md",
+          "sha256": "c81e83c3efd1ef2c75109fff2127db6ef84b41ff1d2592f35790436963b2a377"
+        },
+        {
+          "path": "references/wear-m3-catalog.md",
+          "sha256": "400dcfebcaae6fd60ad38976b1c2382579ec23742b5a4a5d80e9ec63caa6ba17"
+        }
+      ],
+      "upstream_path": "skills/compose-ui-builder"
+    },
+    {
+      "name": "design-parity-review",
+      "local_path": "skills/design-parity-review",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "9c27bfc3cfb610d5be0f324ad9929485effd8329788432e1e1dc235a502a4577"
+        },
+        {
+          "path": "references/ci.md",
+          "sha256": "fa256471a0c0116cca8ab6b59c6ef680ec2de72acd88237e9f95673eb99a5ec2"
+        },
+        {
+          "path": "references/reference-cache.md",
+          "sha256": "c3ef54e39fabd08a61193d19fcc544af5cb35eecaf08c97eca91025e262d148a"
+        },
+        {
+          "path": "references/round-trip.md",
+          "sha256": "9bde9dcb7b3e1f3d9e47d52c692975478e0a56e7d61eead1b3208e0227190be8"
+        }
+      ],
+      "upstream_path": "skills/design-parity-review"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "local_path": "skills/diagnosing-bugs",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "849198df88cdb65fd0d97236604c1fca7ff2f22d2f705f9724a800d0266b118d"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "3e430dbe4334a87597488c060cb3dc3786bb00c9182877d6f5ec41f62490e90b"
+        },
+        {
+          "path": "scripts/hitl-loop.template.sh",
+          "sha256": "35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503"
+        }
+      ],
+      "upstream_path": "skills/engineering/diagnosing-bugs"
+    },
+    {
+      "name": "docs-sync",
+      "local_path": "skills/docs-sync",
+      "source": "local",
+      "status": "maintained_here",
+      "checked_on": "2026-10-28",
+      "imported_revision": null,
+      "imported_revision_status": "not_applicable",
+      "update_notes": [
+        "No external skill upstream; maintain this source directly."
+      ],
+      "files_at_check": [
+        {
+          "path": "SKILL.md",
+          "sha256": "444d365f278b5827bcc7634f68ca8ad5c522597c88cfd48969d851717c463a3a"
+        }
+      ]
+    },
+    {
+      "name": "domain-modeling",
+      "local_path": "skills/domain-modeling",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "ADR-FORMAT.md",
+          "sha256": "944c92aa790e8fbdc9199640b170979abb8a34ba8d0fe18c2a01a63bce140ca0"
+        },
+        {
+          "path": "GLOSSARY-FORMAT.md",
+          "sha256": "21dcc40cdec8e151a829b98ab1517c1867bc444e3665134a98c6983411996801"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "7b925d7b1e341a2eeae33ad68a8a8c0ab889a38ddd22a7598e4c240e5a7556a3"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "f6bf2aa996c6e6f53fdd0708e18a0d16a56aed8322cca59fedbe3c0d2c75f06b"
+        }
+      ],
+      "upstream_path": "skills/engineering/domain-modeling"
+    },
+    {
+      "name": "edge-to-edge",
+      "local_path": "skills/edge-to-edge",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "4ca04cb6a5330b96e51410bc815f878b4ca642fba46fe5e1ad724c94e04d6eb8"
+        }
+      ],
+      "upstream_path": "system/edge-to-edge"
+    },
+    {
+      "name": "figma-catalog-import",
+      "local_path": "skills/figma-catalog-import",
+      "source": "yschimke",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision": "f8db134b614e7f16b076627408a4a40af30b32ab",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Codex validator compatibility: replace angle-bracket placeholder design-artifacts/<system> with design-artifacts/SYSTEM in description only; body unchanged."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "bb7216abe83d8dc2a619f4f64a0ddbe5e3493a51075a34597dd3f18eae177901"
+        }
+      ],
+      "upstream_path": "skills/figma-catalog-import"
+    },
+    {
+      "name": "grill-me",
+      "local_path": "skills/grill-me",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "c061e39c3e0f9d865fb1b97556d485704af2a8a58f4b8221a8917a5c2074a32b"
+        }
+      ],
+      "upstream_path": "skills/productivity/grill-me"
+    },
+    {
+      "name": "grill-with-docs",
+      "local_path": "skills/grill-with-docs",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "7de372c13488f1ee96cc11cd8907b56b6809cc93eef776eeddd37de6b6cbe3fe"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "94cd0ab161fb468a836349f5ed482ba58ce8e709a05c57ce533d739dbd35cca9"
+        }
+      ],
+      "upstream_path": "skills/engineering/grill-with-docs"
+    },
+    {
+      "name": "grilling",
+      "local_path": "skills/grilling",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "befdff1e27a1dfe2a294d5871169ac1afe16d983911daa4f32627514a48c1e15"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "1411d7df7d99b7e621a1ff8283c8133cc2464be63d064e52d8ce169c6800ee9b"
+        }
+      ],
+      "upstream_path": "skills/productivity/grilling"
+    },
+    {
+      "name": "handoff",
+      "local_path": "skills/handoff",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "4cbb043950dad2ffd3662ff1a5a0b51ae676004b5cae10e3787e8ee7a4ee69d3"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "5c479fd562c691851690e8b18c8501045bef0943c10743d636b2fae26add1d28"
+        }
+      ],
+      "upstream_path": "skills/productivity/handoff"
+    },
+    {
+      "name": "implement",
+      "local_path": "skills/implement",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Rewrite code-review skill references in SKILL.md."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "acaaf7777f5494712ec506c7adc2ef312b568889264c018122dcac5c06735b08"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "8970a8596ade0c28ab427f41a4ea242d6bdf6186c59ebf55e1238dbecaab79dc"
+        }
+      ],
+      "upstream_path": "skills/engineering/implement"
+    },
+    {
+      "name": "implement-spec",
+      "local_path": "skills/implement-spec",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Rewrite code-review skill references in SKILL.md."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "acbf98dedd4f163c8e392b0f72112647200f364298dcd8e8300325d0fa62943b"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "fd41efb42c60c96320d6531be7e4bf15cbf5518cd652d57dff27ccffa46988e9"
+        }
+      ],
+      "upstream_path": "skills/engineering/implement-spec"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "local_path": "skills/improve-codebase-architecture",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "HTML-REPORT.md",
+          "sha256": "581e8bb5a521e46bbda8ca7e19b15948bed882187108092ebb90c62513b77528"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "552240a5ab5cec6b67c15dd1ad6e9f6962b1bca6ce870059a8c2713760c20392"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1"
+        }
+      ],
+      "upstream_path": "skills/engineering/improve-codebase-architecture"
+    },
+    {
+      "name": "migrate-xml-views-to-jetpack-compose",
+      "local_path": "skills/migrate-xml-views-to-jetpack-compose",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "79d7bdcbf88f1a0e88bce08f7d016d24648a609059cd7f2c9adaa0abbfb16f18"
+        },
+        {
+          "path": "references/analysis-of-the-project-and-layout.md",
+          "sha256": "6c62575a08ac698b33ee41e8806858cc9536669ab83c8a18653a4e086e4fce0a"
+        },
+        {
+          "path": "references/android/develop/ui/compose/designsystems/migrate-xml-theme-to-compose.md",
+          "sha256": "f87dc398550d898fedbd6c5ac382a927013064ed6148fe25d56c518049db1ee1"
+        },
+        {
+          "path": "references/android/develop/ui/compose/migrate/interoperability-apis/compose-in-views.md",
+          "sha256": "0c177f3275584e2a7977eb54e4409af7a0a0ebcb37a536a29a420ac541acfc57"
+        },
+        {
+          "path": "references/android/develop/ui/compose/migrate/interoperability-apis/views-in-compose.md",
+          "sha256": "1ef0315bd99b5d3cea9270e6fb2f883989eb6b9cb56f64dcc0d6e67467441ad7"
+        },
+        {
+          "path": "references/android/develop/ui/compose/setup-compose-dependencies-and-compiler.md",
+          "sha256": "0250383f52bb725d5f4b4ae1f27cb3b3ed53640c59aa040af637b783ca8545e0"
+        },
+        {
+          "path": "references/identify-optimal-xml-candidate.md",
+          "sha256": "acd036633dd2c1b0d286be9340f8565143f6700cb2fa8e3c04c0e10d886eb1ba"
+        },
+        {
+          "path": "references/xml-layout-migration.md",
+          "sha256": "c5e41a6b97a963407606d428f273938693ed3da7d4195bb30fd15dd4dc68916f"
+        }
+      ],
+      "upstream_path": "jetpack-compose/migration/migrate-xml-views-to-jetpack-compose"
+    },
+    {
+      "name": "mp-code-review",
+      "local_path": "skills/mp-code-review",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Rename skill code-review to mp-code-review to avoid built-in collision."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "60d318b9bd8d1d30d7ddc20215e270c4e68adcb69aa61d8411c2b84327b985c6"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "8229ca854e11dc8e6aef2131ee03f31fb1561cf905fab9ccc325180cf3331352"
+        }
+      ],
+      "upstream_path": "skills/engineering/code-review"
+    },
+    {
+      "name": "navigation-3",
+      "local_path": "skills/navigation-3",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "e2bc8ec434bc104f71ef753ca21665678b00db8f14ef3fd36847ab85b313b4af"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/index.md",
+          "sha256": "a6170dc40e2769e1034d51a5021b0b6dbc5df9bc9d9bbcae3c576a0647d0b6cf"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/migration-guide.md",
+          "sha256": "2ba7d44e4b0b5ab827925354810645da026e9fb721bd9589a4f94b6f5d7bc954"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/animations.md",
+          "sha256": "50c54d09fe14cb28f27d02cd9aaad4204dfe975a14bc8292b0bd40f61ad5300d"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/basic.md",
+          "sha256": "f96b02408f311d07c8df16c1867e25598c4bcc1794b52aaaa290a3b377727495"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/basicdsl.md",
+          "sha256": "d077507172cbf9ed6916899ef2d17b5f9aebcc9d3b46d51725d30166949daa14"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/basicsaveable.md",
+          "sha256": "93f01733db02f06a66c54bc5372a88688831bad14ded07ad181a16a12b848110"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/bottomsheet.md",
+          "sha256": "63d7fe5d044bd0d9c4dbb913b47ecaf2d7677305ac94c51c9295ebabfc1ef76f"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/common-ui.md",
+          "sha256": "835be092ff7114870543b4f7fb1f0893157c0ad07e00d70682a1256e95f5f3db"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/conditional-transitions.md",
+          "sha256": "bb41f81b08f422aaa201d2716f0feaa22705ebc9154d914ade0c25b3d3052063"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/conditional.md",
+          "sha256": "1197b80637b7f670d7f7a426e1c5e47958139954888ddbe5cad68a82dda0fe2f"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/deeplinks-custommatcher.md",
+          "sha256": "96c0a9a617fffc4e5e9113da2b55fd1bd8bbe40593c836425a9dc2984854d0b0"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/deeplinks-staticuri.md",
+          "sha256": "f131fe946f25f108601b66dcdb62be6add8cf685437fc78621d8b92dd67bd201"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/deeplinks-syntheticbackstack.md",
+          "sha256": "12bf69439480fab3111f4b513118be0128ad574dd9d0aecd199ea37d0f75c4b2"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/deeplinks-uriarguments.md",
+          "sha256": "bb8afb2616dfc7202376175752bdb5c99b19a64642b7a1b1f6f651527dfdf129"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/dialog.md",
+          "sha256": "b8ac45054125a6aed66c5df682200c74440336d0584d7e1894078954c719200a"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/lifecycle-owner.md",
+          "sha256": "45e204c1494179deadb56e9b544c78c6f6f17be4d3d660d841a5db5e4245038f"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/material-listdetail.md",
+          "sha256": "e4781cf0fc691f92c202400a07ebc80424666681f9547e757f660388252cdb29"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/material-supportingpane.md",
+          "sha256": "f0dc47a8d0aaceeefc6a48bf73563b3f9449e608c2ef71140acd5dcd13377e6d"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/modular-hilt.md",
+          "sha256": "a11572b32f8a72ea6736db0ccea44eb94f575dd272c9246bdf24d1b76c31f539"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/modular-koin.md",
+          "sha256": "591bd833b2b725d9e2e8f5ca5658a825c7d2f589c6c5d3103066e320a82e4fb9"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/multiple-backstacks.md",
+          "sha256": "ee3300492f924914c649e157f3e72ce67af1b3b2fb356465a86b0b37e7b47d11"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/passingarguments.md",
+          "sha256": "bc53a9bbabb799865bf8bc3130faeae6e6d2b2838c3e44f48574443b6467e0a5"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/results-event.md",
+          "sha256": "e3f3371d6c5f06a3696c2f90f095bd5c530abd1a8dc59e666631b4e1d2926589"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/results-state.md",
+          "sha256": "17fbf45258b3c928e300adfa07ec320ffbd591e3209236499c74bbb736a1acec"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/scenes-listdetail.md",
+          "sha256": "2a19b4d03973c179eb4e4be8f95f9b728af34b55015619dde73dcd72af916e8c"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-3/recipes/scenes-twopane.md",
+          "sha256": "d0cb99ae3054cf463a598fd348d3d9a07aa4b6805ab22121bdc11561a60b1f64"
+        },
+        {
+          "path": "references/android/guide/navigation/type-safe-destinations.md",
+          "sha256": "ad5f13e3d5ee1bc849d2da5941d4f99a3e2a5748d52fcdfde96d1bc21bf47acb"
+        }
+      ],
+      "upstream_path": "navigation/navigation-3"
+    },
+    {
+      "name": "navigation-event",
+      "local_path": "skills/navigation-event",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "4e9acfb0190cdee56dafb063868965992fdba2ad1694a7fc2524b9046a199609"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-event/dispatcher.md",
+          "sha256": "c7ea58494c01b81554058c04090489a867731ca6cd995541446b22ddb0f42bba"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-event/handle-back.md",
+          "sha256": "83268d85190a87e96f3738bec946d7f920abf2779f78d1f7c81822b4697a251b"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-event/index.md",
+          "sha256": "c6fa437e86e893fba81b80c1667dec134eb9530eea77861e23ec8dc1ac4747a5"
+        },
+        {
+          "path": "references/android/guide/navigation/navigation-event/setup.md",
+          "sha256": "c117a8fbffa985a0640fd3a1738e568d6d4e26c2c5a941601146fea687258d84"
+        }
+      ],
+      "upstream_path": "navigation/navigation-event"
+    },
+    {
+      "name": "pr",
+      "local_path": "skills/pr",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "CREDITS.md",
+          "sha256": "a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "ab63f1cf78647389edcd386c9427c5dfca27ed2836930c24773ffee834c19bcd"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "2295b586624db4ef546f3fd4695492f039d941a46d8a1593a702ce3ca511b8ad"
+        }
+      ],
+      "upstream_path": "skills/engineering/pr"
+    },
+    {
+      "name": "pr-review",
+      "local_path": "skills/pr-review",
+      "source": "local",
+      "status": "maintained_here",
+      "checked_on": "2026-10-28",
+      "imported_revision": null,
+      "imported_revision_status": "not_applicable",
+      "update_notes": [
+        "No external skill upstream; maintain this source directly."
+      ],
+      "files_at_check": [
+        {
+          "path": "SKILL.md",
+          "sha256": "02e52692d0e00e7767c2a302ad0d17abcc36c7ee76a991fdc3f1f5e36796806d"
+        },
+        {
+          "path": "github.md",
+          "sha256": "a5eb559d9716a9bf185a35976bb4aaf5a70f0929c071ca774fa4f1863b2fc7dc"
+        },
+        {
+          "path": "gitlab.md",
+          "sha256": "0b2cb1c3c2eaa433dcce5533fd6c27986ad9af54827c046f55d7d2f56eeb1c02"
+        }
+      ]
+    },
+    {
+      "name": "prototype",
+      "local_path": "skills/prototype",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "LOGIC.md",
+          "sha256": "f61c7d249e786a79ef289018901c348271e1798dd0b0bc5607b5c6f4d4a01ab9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "714de632d116bb73f65cdb5a882db15b9369a6713b9a47c0fad827848f0bfbe3"
+        },
+        {
+          "path": "UI.md",
+          "sha256": "723211e878acbc7b6ff09755263f3295cde724ba902ff0064da41eed51d45ad3"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "5af65e43ab41a350436697b81e27b7f848d36782043b73c322bb2c9fa9cc55dc"
+        }
+      ],
+      "upstream_path": "skills/engineering/prototype"
+    },
+    {
+      "name": "research",
+      "local_path": "skills/research",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "985569f15739c713d6784887c3d186d4ef9ac85bec5ad9c068d25bf0739928e4"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "9b4c470d63221c1f68f22df70b83e2f12401b317babe0d1b7b5f24a974474d0d"
+        }
+      ],
+      "upstream_path": "skills/engineering/research"
+    },
+    {
+      "name": "retro",
+      "local_path": "skills/retro",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Use AGENTS.md for retro instruction edits; consolidate any legacy CLAUDE.md at the same scope and remove it."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "ace42b4ec15051befc39e303fbb920c9c2c5fe8a564356ff9f2edaf123ee2dba"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "cb6fb9d7e6b4be5975f41f6def1dd00a1255bad5d9b02696b124c924a8b8745c"
+        }
+      ],
+      "upstream_path": "skills/engineering/retro"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "local_path": "skills/setup-matt-pocock-skills",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Author project instructions in AGENTS.md; consolidate legacy CLAUDE.md at the same scope and remove it; replace filename-choice branch in setup steps 3–4."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "6ba542c616e3fb5ce180561280a4e73d6360585a367feb517facbd4e19013bba"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "9527de0110541c45712319025155aeab8dc7d77c6ed6e5e83271bab1851ab939"
+        },
+        {
+          "path": "domain.md",
+          "sha256": "593a7042218689f1d24df89df14eaf0a20e19e0d0a7d479a01947ac78f0784b9"
+        },
+        {
+          "path": "issue-tracker-github.md",
+          "sha256": "6fdb3e9b00b7b0b115ecac3b1c00e3790f637f190abf598815368722c0a94692"
+        },
+        {
+          "path": "issue-tracker-gitlab.md",
+          "sha256": "947602d33a80f98f939fb990995b8f95a3459b114b919c4221d08bd75d7cffe0"
+        },
+        {
+          "path": "issue-tracker-local.md",
+          "sha256": "7dcda20a2eb4bdc89b95d1143423c0691309921cadae3132e6424f371030506e"
+        },
+        {
+          "path": "triage-labels.md",
+          "sha256": "ae512af838c78b8750471c42cd2b20fa32319553e61d84c9a23d171b40ce14aa"
+        }
+      ],
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills"
+    },
+    {
+      "name": "styles",
+      "local_path": "skills/styles",
+      "source": "android",
+      "status": "upstream_removed",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "4ebabf2b0fd6c04b7150023c8b612f80592a6226",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory.",
+        "Retain the existing active name using the last existing upstream snapshot, with a top-of-body upstream-removal status note and current-doc verification requirement.",
+        "Use the last surviving snapshot; this is not available on the checked main branch. No upstream reason or replacement is documented."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "55a944c026cf752fc78cab33de04ebda5a72353002b5f81c79abe7fc734edd7d"
+        },
+        {
+          "path": "references/android/develop/ui/compose/designsystems/custom.md",
+          "sha256": "f68517a552e18259a29a3f77321163dcc95bc6e426baa0337da701cc28eddb6b"
+        },
+        {
+          "path": "references/android/develop/ui/compose/styles/fundamentals.md",
+          "sha256": "79aec0b42ea4ab3a3125f4bf6c60d8acd2d1dd5e78377b7de49e5a1cb8447ca8"
+        },
+        {
+          "path": "references/android/develop/ui/compose/styles/state-animations.md",
+          "sha256": "414386ab0d230300b9a0d56b0ffac7b11df5b3478f735874b8cd669501e0b7b2"
+        },
+        {
+          "path": "references/android/develop/ui/compose/styles/styles-vs-modifiers.md",
+          "sha256": "6171322b69fecfd33b7fcecbffd9228647ec2ba5893525981108b3048d065423"
+        },
+        {
+          "path": "references/android/develop/ui/compose/styles/theming.md",
+          "sha256": "5b58463cbfa91f1a5c3d65fc6b3e79ce921181eae10153755b3e10da3e488a4d"
+        }
+      ],
+      "upstream_path": "jetpack-compose/theming/styles",
+      "removed_in": "253e63c608eb08265577684b38c19b0373869031",
+      "removed_on": "2026-10-26",
+      "removal_reason": "Not specified; upstream PR body only describes an automated skill update. No replacement documented."
+    },
+    {
+      "name": "tdd",
+      "local_path": "skills/tdd",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Rewrite code-review skill references in SKILL.md."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "23f1c80534f0cbb0c223f60b98e7a59c26fce699030f450e75d11e12d8d91b6a"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b"
+        },
+        {
+          "path": "mocking.md",
+          "sha256": "3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef"
+        },
+        {
+          "path": "tests.md",
+          "sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a"
+        }
+      ],
+      "upstream_path": "skills/engineering/tdd"
+    },
+    {
+      "name": "teach",
+      "local_path": "skills/teach",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "GLOSSARY-FORMAT.md",
+          "sha256": "9b99859ec28437668130d8f2ce5a342938970f8a1ed4fd38c3eab4f4b5fff210"
+        },
+        {
+          "path": "LEARNING-RECORD-FORMAT.md",
+          "sha256": "701fa34b6748aa89e6c960ffb815257f481a7d77fb2900f9028f7edf3fdd6052"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "MISSION-FORMAT.md",
+          "sha256": "8cacbb3c0644d3ae0ea4965564797099401a6930a23f7cf462918576587f2418"
+        },
+        {
+          "path": "RESOURCES-FORMAT.md",
+          "sha256": "e9cacf34026e11a8d1c8f9de88abe5bcbf654f4ebdb25cae8c0de0d5f48f44ec"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "550482c2d674b085c9043b87bfdc14a8f2ec453c736119e7fcbb1e9332bffeba"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "5856f3ae8aec742f1499c640aecdd5f1d6af5fa210a7c6ec794de8263a6f733f"
+        }
+      ],
+      "upstream_path": "skills/productivity/teach"
+    },
+    {
+      "name": "testing-setup",
+      "local_path": "skills/testing-setup",
+      "source": "android",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision": "45fd1739a4dbca5452c3e936570797f7f6261cd7",
+      "imported_revision_status": "pinned",
+      "update_notes": [
+        "Copy repository-root Apache LICENSE.txt into the flattened skill directory."
+      ],
+      "files_at_check": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "5aefde63e4617071b227d3cea250d7aa772a192145cf93b0133fd1c8a7bd4a9e"
+        },
+        {
+          "path": "references/android/develop/ui/compose/testing/common-patterns.md",
+          "sha256": "57fc697835d875cae7179d1b164db371e1b8c37881719fb32be51c09fa5c8c35"
+        },
+        {
+          "path": "references/android/studio/preview/compose-screenshot-testing-with-testsuites.md",
+          "sha256": "4b4ada7a50201bcf9ab90b0d9f00cc2ceb16513d1de7f63c12d634318a2ec20d"
+        },
+        {
+          "path": "references/android/studio/preview/compose-screenshot-testing.md",
+          "sha256": "4ca92f3168f2bee631822f4505730314b85169dfb8c3615b486a330c6d72ebf7"
+        },
+        {
+          "path": "references/android/training/dependency-injection/hilt-testing.md",
+          "sha256": "5e774a6ab09c0f469b4712ea8c468402b38dd4a19dce9570bacc49ad9af9c814"
+        }
+      ],
+      "upstream_path": "testing/testing-setup"
+    },
+    {
+      "name": "to-questionnaire",
+      "local_path": "skills/to-questionnaire",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "b5eb929842ee0e93d867c5e906d183d350f2f2d149eaeaa86967d94d8eda1d3b"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "9e8a06c38c8842eea8d4922cb9d1ead8e3ace647bab259b943c994a1b4742bc2"
+        }
+      ],
+      "upstream_path": "skills/productivity/to-questionnaire"
+    },
+    {
+      "name": "to-spec",
+      "local_path": "skills/to-spec",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "43ad9cf318e5e7d3d1fa360253a37021796dc87a0c2e595ad262661a10f85088"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "1c5b4d1e3d8e52287ef19cc2742fdbbfae1914ac75d33af3e4c8174f08cc55bb"
+        }
+      ],
+      "upstream_path": "skills/engineering/to-spec"
+    },
+    {
+      "name": "to-tickets",
+      "local_path": "skills/to-tickets",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "56ec23c5b2782785d4e65bff9e315b6d3aeb4ef977c174a219e99489fada1995"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "21bc6215fffcd7614e9f772bb1760e87cc5fc7dcc707e7d282bc9414267a6090"
+        }
+      ],
+      "upstream_path": "skills/engineering/to-tickets"
+    },
+    {
+      "name": "triage",
+      "local_path": "skills/triage",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "AGENT-BRIEF.md",
+          "sha256": "7f5f87fed3033df1b06e083c480f3e847b1fbb0647746b8a4c6a50f9f26ef44f"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "OUT-OF-SCOPE.md",
+          "sha256": "1fbf9b432130c6380aa65813b55553cfda150309b27c595e183f8e335b8a190d"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "917b0baf74be583e74f110857ed45df2766617f75c00baf61fd136d7af515edf"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "2e683717720cf456d165d0bb1a68bb600d0b6a8ccb61841c172e50d26f95351c"
+        }
+      ],
+      "upstream_path": "skills/engineering/triage"
+    },
+    {
+      "name": "wait-what",
+      "local_path": "skills/wait-what",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "d961bb37defd975c539427edb8f450cdbccdcdd552e213c1ece46676a7970905"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "b41faadf741d51e4ea184148b2d1854d93f947aaf754c7844f70a00f04194999"
+        }
+      ],
+      "upstream_path": "skills/productivity/wait-what"
+    },
+    {
+      "name": "wayfinder",
+      "local_path": "skills/wayfinder",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "9be7b478c389605a24517d27752f278933588da97a1b5921b165f455edf4c5b7"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "88bc81a11a6d52ac67aeaa76b8b619e387020d47c5133a4dd4927fd15c4ad073"
+        }
+      ],
+      "upstream_path": "skills/engineering/wayfinder"
+    },
+    {
+      "name": "wizard",
+      "local_path": "skills/wizard",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "bdf31d48211ea559878f95a4f344aeabf8d85897488ba564382bab0b000daac1"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "98f44d682d58e262f160dc59a8befc365e0aa65820dd0261864af26aa8e59d83"
+        },
+        {
+          "path": "template.sh",
+          "sha256": "6566f147299bc6f1d941e64591ed04385416d543e11f96f564c7228f5018d0ed"
+        }
+      ],
+      "upstream_path": "skills/engineering/wizard"
+    },
+    {
+      "name": "writing-for-agents",
+      "local_path": "skills/writing-for-agents",
+      "source": "mattpocock",
+      "status": "current",
+      "checked_on": "2026-10-28",
+      "checked_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "imported_revision_status": "pinned",
+      "update_notes": [],
+      "files_at_check": [
+        {
+          "path": "LICENSE",
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+        },
+        {
+          "path": "SKILL-MECHANICS.md",
+          "sha256": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "eacb24b2a618cfb81dacb0416f4fdd75ddf3a8060f8ddb99aae1b1e301907e4b"
+        }
+      ],
+      "upstream_path": "skills/productivity/writing-for-agents"
+    }
+  ]
+}

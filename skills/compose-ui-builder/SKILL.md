@@ -1,6 +1,6 @@
 ---
 name: compose-ui-builder
-description: Author and edit a Compose UI design over MCP against a compose-preview serve deployment — create a screen or a Wear widget, insert and edit nodes, and export the Kotlin, PNG or SVG. Also use when no host exists and the builder must be run locally (ui-builder --no-project). Use when asked to build, change, or review a UI Builder design (a URL like /ui-builder/catalog/design-id), to turn a design into Compose code, or to collaborate with a designer on one.
+description: Open and edit checked-in .uid designs, compare real renders against references, and implement them in application code. Author and edit a Compose UI design over MCP against a compose-preview serve deployment — create a screen or a Wear widget, insert and edit nodes, and export the Kotlin, PNG or SVG. Also use when no host exists and the builder must be run locally (ui-builder --no-project). Use when asked to build, change, or review a UI Builder design (a URL like /ui-builder/catalog/design-id), to explore alternative versions of one, to turn an approved design into Compose code or find the design a PR implements, or to collaborate with a designer on one.
 ---
 
 # Compose UI Builder
@@ -12,52 +12,73 @@ exported as Compose Kotlin (or PNG/SVG). A person edits it in the browser at
 server's MCP endpoint. Both land in one revision log, so you and a designer can
 work on the same design at the same time.
 
-This is **not** the `compose-preview` renderer. That renders `@Preview`
-functions from a checkout you can build. This authors a design that has no
-checkout at all, on someone else's server, and hands you Kotlin at the end. If
-you have the repo and the composable already exists, you want **compose-preview**.
+A design can also live in a checked-in `.uid` file. For a repository design,
+inspect its schema and follow [the local design-to-code workflow](references/local-design-to-code.md):
+edit the canonical file, compare real design renders with references, adapt
+exported Kotlin into the application, then render the affected `@Preview`s.
+Use `compose-preview` alongside this skill when a composable already exists.
 
 Maintained at [github.com/yschimke/skills](https://github.com/yschimke/skills)
 under `skills/compose-ui-builder/`. The server ships from
 [github.com/yschimke/compose-preview-server](https://github.com/yschimke/compose-preview-server);
-its human-facing guide is
+people start at <https://ui.coo.ee/start>, and the longer guide is
 [`docs/UI_BUILDER_GETTING_STARTED.md`](https://github.com/yschimke/compose-preview-server/blob/main/docs/UI_BUILDER_GETTING_STARTED.md).
+The public host's MCP endpoint is `https://preview.coo.ee/mcp`: configure only
+that URL ([mcp.md § Which MCP server](../compose-preview/references/mcp.md#which-mcp-server)).
 
 ## Firm collaboration contract
 
 These rules apply before the creation and editing recipes below:
 
-1. **Work at the recorded home.** For an existing design, start with
-   `ui_builder_get_design` and read its `home`. A server-homed design is edited
+1. **Work at the recorded home.** For an existing server design, start with
+   `ui_builder_get_design` and read its `home`. For a checked-in `.uid`, read
+   the file and its recorded home first; a server lookup is not required. A server-homed design is edited
    on that server; a repo-homed design is edited at its recorded `.uid` path.
-   Do not export a server design, edit the copy locally, and re-import it. If
-   the response does not yet contain `home`, say that the canonical home cannot
-   be verified with the current tooling. Do not infer or rewrite it.
+   Do not export a server design, edit the copy locally, and re-import it.
+   Servers record `home` since compose-preview-server v3.76.0; if the response
+   has none (an older host, or a design created before then), say that the
+   canonical home cannot be verified. Do not infer or rewrite it.
 2. **Keep discussion at the home.** For a server-homed design, call
    `ui_builder_list_comments` before the first edit, reply and resolve there,
    and check again before finishing. For a repo-homed design, use its linked PR
    or issue. Link to that discussion with `ui_builder_set_links`; do not split
    it across chat, an issue, and server comments.
 3. **Use typed operations and validation.** Prefer `ui_builder_apply` and the
-   tool schemas over editing document JSON. Call `ui_builder_validate` before
-   saving or finishing when the host exposes it. If validation or a required
-   schema is not available, say so; an export diagnostic is useful but is not
-   a substitute for document validation. If hand-editing is unavoidable,
+   tool schemas over editing document JSON. Call `ui_builder_check_design`
+   (which runs `ui_builder_validate` plus accessibility checks) before showing
+   or finishing, or `ui_builder_validate` on a host that has only that. If
+   validation or a required schema is not available, say so; an export
+   diagnostic is useful but is not a substitute for document validation. If hand-editing is unavoidable,
    validate before saving and render again afterwards.
-4. **See the editor after each visible step.** `ui_builder_view` is unreleased
-   and gated on [#1114](https://github.com/yschimke/compose-preview-server/issues/1114).
-   Use it only when advertised. Otherwise inspect PNG/SVG or native output,
-   label it as not the editor viewport, give the browser URL, and never infer
-   selection, overlays, or comment pins from JSON or an export.
+4. **See the editor after each visible step.** Call `ui_builder_view`
+   (compose-preview-server v3.89.0 and later): it draws the canvas as a person
+   sees it, with selection, reference overlay and comment pins. On a host that
+   does not advertise it, inspect PNG/SVG or native output, label it as not the
+   editor viewport, give the browser URL, and never infer selection, overlays,
+   or comment pins from JSON or an export.
 5. **Close temporary copies.** A local copy may be used for a compile check or
    offline experiment only. Announce its path and purpose, keep its recorded
    home pointing at the canonical design, and save the result back to that home
    or discard the copy before finishing. Moving a design between server and
    repo homes requires explicit approval.
 
-Before finishing, validate when possible, obtain the final editor view, and
-check for unread or unacknowledged comments at the design's home. Report any
-capability that prevented one of those checks.
+Before finishing, run `ui_builder_check_design`, look at the final editor view
+and the device grid, and check for unread or unacknowledged comments at the
+design's home. Hand back the link, the revision and whether a person has
+approved it ([Approval and handoff to code](#approval-and-handoff-to-code)).
+Report any capability that prevented one of those checks.
+
+## Review design guidelines
+
+When asked to review a design, follow the shared
+[catalog guidelines checklist](../compose-preview/references/design-guidelines.md).
+It ships beside this skill in the default bundle and works without a reviewer
+agent or an OpenRouter key. Use advertised `ui_builder_guidelines_prompt`,
+`ui_builder_get_guidelines` and `ui_builder_record_guidelines` tools; preserve
+the prompt's revision and rules version, inspect its required pictures and
+report unanswered rules. Recording a requested review is metadata at the home,
+not an edit to nodes or a human approval. Keep model warnings advisory and
+measured schema/accessibility checks separate.
 
 **Working with platform skills.** When an official platform skill is loaded
 (for example Android's Wear Compose Material 3 skill), it decides which
@@ -66,11 +87,20 @@ contain today. If they disagree, say so rather than picking silently. A catalog
 renders one fixed library version, which may differ from the project that will
 receive the exported Kotlin.
 
+Return the canonical editor link and tell the person its **Issues** panel
+shows a successfully recorded shared guideline result, its model and revision
+freshness. Also return the compact verdict and coverage in chat. If recording
+is unavailable, make that explicit and keep detailed findings at the design's
+existing discussion home when authorized. Link to that discussion from chat;
+never imply the panel contains an unsaved review or invent an audit-launch link.
+
 ## Viewer, prompts, and interactive decisions
 
-- Viewer and prompts need a compose-preview-server release after v3.74.0; until
-  then treat them as absent. See the
-  [catalog MCP reference](../compose-preview/references/catalog-mcp.md#draft-viewer-and-interactive-capability-fallbacks).
+The MCP Apps viewer, prompts and elicitation depend on the host as much as on
+the server. Discover them from `tools/list` and the client's capabilities, and
+use the text fallbacks in the
+[catalog MCP reference](../compose-preview/references/catalog-mcp.md#draft-viewer-and-interactive-capability-fallbacks)
+when they are absent.
 
 ## Core creation loop
 
@@ -99,12 +129,29 @@ still apply:
    "location": {"parent": {"nodeId": "col", "slot": "children"}}}]}
 // → {"outcome":{"type":"accepted","committedRevision":1, …}}   ← next baseRevision
 
-// 4. ui_builder_export — the Kotlin, or diagnostics saying why not
+// 4. ui_builder_check_design — schema, catalog/export gate and accessibility in one
+{"designId": "settings-v2"}
+// → {"summary": "…", "ok": false, "findings": [{"nodeId": "title", …}]}  ← fix with apply
+//   pass "operations" (+ "baseRevision") instead to dry-run a batch before applying it
+//   a `skipped` reason of "no native render was available" may hide a failed
+//   compile on older hosts: call ui_builder_render_native to find out
+
+// 5. ui_builder_render_design_matrix — every device the screen claims, one picture
+{"designId": "settings-v2", "themes": ["light", "dark"], "fontScales": [1, 2]}
+
+// 6. ui_builder_export — the Kotlin, or diagnostics saying why not
 {"designId": "settings-v2", "format": "compose"}
 
-// 5. tell your human where it is
+// 7. tell your human where it is
 // https://<host>/ui-builder/<catalogSystemId>/settings-v2
 ```
+
+Read each reply's `summary` first; it is written to be enough on its own. Step 4
+replaces a separate validate and accessibility pass, though not the editor
+view: run it before you show a design to anybody, and fix its findings by `nodeId` through
+`ui_builder_apply`. The device grid in step 5 is where a navigation rail that
+never collapses, or text that clips at 200% font scale, shows up. Look at it
+before calling the screen done.
 
 Send that browser URL as soon as the design exists, then keep sending the
 current revision, what just changed, the comment state, and the next action.
@@ -131,8 +178,10 @@ Before creating or editing anything, orient yourself:
 
 **Read [references/m3-catalog.md](./references/m3-catalog.md) rather than
 calling `ui_builder_list_catalogs` to find out what to insert.** It carries the
-component ids, slot names, required properties and enum values for the two
-published catalogs, which is what an insert needs. `list_catalogs` is the
+component ids, slot names, required properties and enum values for
+`m3-catalog`, and the pins for every catalog, which is what an insert needs. A
+Wear app screen uses [wear-m3-catalog.md](./references/wear-m3-catalog.md) and
+a Wear widget [remote-m3-catalog.md](./references/remote-m3-catalog.md). `list_catalogs` is the
 authority and answers with far more — every component's parameters, adapter and
 parity statuses — so reach for it when something is missing from the reference
 file, and reduce it with the recipe at the bottom of that file.
@@ -391,6 +440,15 @@ The handshake is the ordinary agent-grant one — see
 - **Pass the token as each tool's `token` argument.** An MCP client fixes its
   headers when it connects, so a token approved mid-session cannot become a
   header. Every gated tool takes `token` for exactly this reason.
+- **Make the approve link one click.** Put the `approveUrl` on a line of its
+  own, as a bare URL (and as a link card where the host can show one), with the
+  `userCode` on the line above — never only inside a sentence, where a person has to
+  ask for it again:
+
+  ```
+  Approve access (code <userCode>):
+  https://<host>/agent-access/<request-id>
+  ```
 - **Collect approval in the background.** Immediately after `request_access`,
   relay its exact `approveUrl` and `userCode`, then start a bounded background
   task that calls `poll_access` with the returned request id and device secret.
@@ -412,9 +470,10 @@ that, not a bug — ask again the same way.
 `create_design` takes either `fromDesignId` (copy an existing design) or a whole
 `document`. Copying is safer *if you can see a design to copy* — but a fresh
 grant usually sees none (`list_designs` shows only what your actor owns or was
-shared), so you will be writing a document. These two are verified against the
-live server; the only fields you should change are the ids, the title and the
-environment.
+shared), so you will be writing a document. These three are verified against the
+live server; the only fields you should change are the ids, the title, the
+environment and — for `wear-m3` only, which has no stable pin — the whole
+`catalogPin`.
 
 **A phone screen** (`m3-catalog`):
 
@@ -451,11 +510,35 @@ environment.
 }
 ```
 
+**A Wear OS app screen** (`wear-m3`) — a round frame, a `screen-scaffold`
+root whose `content` takes one child (usually a
+`wear-m3/transforming-lazy-column`), and **no fixed pin**: `wear-m3` has no
+`candidate` alias, so copy the whole `catalogPin` object from the `wear-m3`
+entry of `ui_builder_list_catalogs`. The values below are what preview.coo.ee
+served on 2026-10-11 and change with each catalog release:
+
+```json
+{
+  "schema": "compose-ui-builder-document/v1-candidate",
+  "id": "<designId>", "title": "<title>", "revision": 0,
+  "catalogPin": {"systemId": "wear-m3",
+                 "catalogRevision": "sha256:b37fb7ace974e9cd4b5a068d623487fe",
+                 "capabilityDigest": "candidate",
+                 "nativeRuntimeId": "wear-m3-p2-a70b6f2e1a9e"},
+  "environment": {"widthDp": 227, "heightDp": 227, "density": 2, "theme": "dark",
+                  "locale": "en-US", "fontScale": 1, "layoutDirection": "ltr"},
+  "roots": ["root"],
+  "nodes": {"root": {"id": "root", "componentId": "wear-m3/screen-scaffold",
+                     "properties": {}, "slots": {"content": []}}}
+}
+```
+
 The `catalogPin` is checked against what the server actually serves, and a pin
-you invent is refused — which is why there is no "blank template" argument on
-the tool. If a pin above stops working, read the current one out of
-`list_catalogs`'s `benchmark` (`catalogSystemId`, `catalogRevision`,
-`nativeRuntimeId`) and use `"candidate"` for `capabilityDigest`.
+you invent is refused (`catalogUnavailable`) — which is why there is no "blank
+template" argument on the tool. If a pin above stops working, copy the
+catalog's `catalogPin` from `ui_builder_list_catalogs` unchanged. Run
+`ui_builder_check_design` with the `document` before `create_design`: it
+reports a refused pin without creating anything.
 
 ## The vocabulary
 
@@ -491,8 +574,9 @@ already supplies, so in practice every insert you write names a parent slot.
                "enabled":  {"type": "bool",   "value": true}}
 ```
 
-The three that are not obvious from the reference table's `jsonType`, because
-that column describes the JSON shape rather than the meaning:
+The reference tables give each property's kind. The three that a raw
+`ui_builder_list_catalogs` listing hides, because it describes the JSON shape
+(`string`, `number`) rather than the meaning:
 
 - **A property with `allowedValues` is an `enum`** — `style`, `variant`,
   `contentScale`, the arrangements and alignments. A value outside the list is
@@ -503,6 +587,35 @@ that column describes the JSON shape rather than the meaning:
   choice when you want the design to follow the theme.
 - **A dimension is a `float`**, in dp, and the property name says so
   (`sizeDp`, `verticalSpacingDp`, `shapeDp`).
+
+**Edits name the node by id.** Besides `insertNode`, the operations an edit
+loop uses are these (all verified against 3.121.0):
+
+```json
+{"type": "setProperty", "nodeId": "signin", "property": "style",
+ "value": {"type": "enum", "value": "filledTonal"}}
+{"type": "setProperty", "nodeId": "title", "property": "style", "value": {"type": "null"}}
+{"type": "removeNodeProperty", "nodeId": "title", "property": "style"}
+{"type": "deleteNode", "nodeId": "email"}
+{"type": "moveNode", "nodeId": "title",
+ "location": {"parent": {"nodeId": "col", "slot": "children"}, "afterNodeId": "signin"}}
+```
+
+- `setProperty` sets one property and leaves the others alone. Its `value` is
+  wrapped like an inserted one.
+- A `{"type": "null"}` value, or `removeNodeProperty`, unsets a property: the
+  way back after trying one. Unsetting a required property (`m3/button`'s
+  `style`) is refused, naming the node and the field.
+- `deleteNode` removes the node and everything in its slots.
+- `moveNode` takes the same `location` as an insert.
+
+To swap a component for another (a filled field for an outlined one), do it in
+one `apply` call: insert the new node next to the old one, `moveNode` each child
+you want to keep into the new node's slots, then `deleteNode` the old one.
+Deleting first loses the label, icons and anything else in its slots. To try a
+batch first, pass the same `operations` to `ui_builder_check_design` with
+`designId` and `baseRevision`: it applies them to a scratch copy and saves
+nothing.
 
 **Modifiers are a typed list**, replaced wholesale by `setModifiers`:
 
@@ -596,7 +709,14 @@ So decide which you are making, and act on it early:
 - **Kotlin is the deliverable** → export after the first structural batch, not at
   the end. A diagnostic then costs one component swap; the same diagnostic after
   eighty nodes costs a rebuild. Empty `diagnostics` is a real check on the
-  design, not a formatting step.
+  design, not a formatting step — but it is not a compile. The gate checks that
+  each call has a record, not that the target classpath carries it: an icon key
+  such as `pauseCircle` exports `Icons.Filled.PauseCircle`, which only
+  `material-icons-extended` ships, with no diagnostic at all. Where it is
+  advertised, `ui_builder_render_native` is the compile check: a
+  `compileError` there (`Unresolved reference 'PauseCircle'`) is a real failure
+  of the Kotlin, so fix it before handing the code over, or name the dependency
+  it needs.
 - **The design is the deliverable** — a mockup, a PNG, a screen a designer takes
   over → use whatever the catalog offers and read the diagnostics as a note about
   the generator rather than a problem with your design.
@@ -608,10 +728,15 @@ So decide which you are making, and act on it early:
 
 ## Seeing what you built
 
-- **`ui_builder_view`** — unreleased behind
-  [#1114](https://github.com/yschimke/compose-preview-server/issues/1114).
-  When advertised, it is the editor viewport, selection, overlays, and comment
-  pins. Otherwise say it is absent; an export is not the editor view.
+- **`ui_builder_view`** — the editor canvas as a person sees it: overlays
+  (`include`, for example `["reference"]`), `selection`, a past `revision`, and
+  `renderer: "native"` where the host compiles. It returns a short-lived https
+  link; `inline: true` adds the image to the reply. Where it is not advertised,
+  say so; an export is not the editor view.
+- **`ui_builder_render_design_matrix`** — one contact sheet of the design on
+  several devices × themes × font scales, captioned per cell, from one call.
+  Nothing is saved. Use it before calling a screen done: the compact frame and
+  `fontScales: [1, 2]` are where layouts break.
 - **`ui_builder_export` `format: "compose"`** — the generated Kotlin, plus
   `diagnostics` naming anything the generator refused. Empty diagnostics is the
   gate a designer sees in the browser's code pane, so it is a real check on the
@@ -624,7 +749,40 @@ So decide which you are making, and act on it early:
   host and reports where each node drew (`nodeBounds`, `taggedNodeIds`). It is a
   compile, so it takes minutes and only exists where the host can run one — reach
   for it when you need the ground truth about layout, and `export png` for the
-  ordinary "does this look right" loop.
+  ordinary "does this look right" loop. When Kotlin is the deliverable, run it
+  once before handing over: it is the only tool that proves the export compiles.
+  An empty `nodeBounds` with a `compileError` means the code did not build, and
+  the overlay tools (`ui_builder_view` outlines) have nothing to draw.
+
+**A Wear widget is not a watch screen.** A `remote-m3` design whose root is a
+`remote-m3/widget-container-*` is shown by the launcher inside a widget frame,
+not across a full round display. Do not judge it on the matrix's Wear presets
+(`wear_small_round`, `wear_large_round`): they draw the 216×76 dp widget as a
+band across a watch face, which is not how anyone sees it. Instead:
+
+- Pass widget-sized `devices` to `ui_builder_render_design_matrix` — the
+  container's own size (216×76 dp small, 216×124 dp large) as
+  `{"widthDp": 216, "heightDp": 76, "label": "small widget"}` — with the font
+  scales below.
+- The host shapes the export targets are the Samsung round frame
+  (`RoundSmallWidgetPreviewParams`), the Pixel Watch squircle
+  (`SquircleSmallWidgetPreviewParams`) and the rectangular one
+  (`RectangularSmallWidgetPreviewParams`), plus their large variants. The
+  guidelines pictures (`ui_builder_guidelines_prompt`, `check_design` with
+  `rendered: true`) are drawn in the Samsung and Pixel Watch frames; ask for
+  those when you need to see the clip a frame imposes.
+- A Wear **app** screen (`wear-m3`) is the opposite case: cover the small round
+  device and the largest font scale.
+
+**Render the large font scale yourself.** `ui_builder_check_design`'s
+accessibility pass reasons from declared sizes and, with `rendered: true`,
+measured touch targets; it does not see a line that wraps and pushes its
+siblings out of a fixed 76 dp frame. Draw the design at the large scale (1.24×
+for a Wear widget, 1.5× for a mobile one, 2× only when asked — at 2× a widget
+clips so widely the findings bury everything else) and look at the picture
+before calling it done. A widget whose brand line wraps at 1.5× and pushes the
+title out of the frame passed both the accessibility check and
+`wear.layout.no-clipping`.
 - **The browser URL** — `https://<host>/ui-builder/<catalogSystemId>/<designId>`
   — is what you hand a person. Always give them this rather than describing the
   design.
@@ -664,7 +822,14 @@ use the browser route below and say that the MCP lacks them.
    layer it falls in. Add `nodeIds` for the layers you want to line up: each
    comes back with where it sits in the reference, the `alignment` (move, size,
    font size) and the exact `operations` for `ui_builder_apply`. Matching layers
-   needs the native render, which needs the `ui-builder-export` grant.
+   needs the native render, which needs the `ui-builder-export` grant **and** a
+   host that compiles the pinned catalog. `renderer` defaults to `native`
+   whenever `nodeIds` is given, so on a host without one (`NO_NATIVE_CATALOG`;
+   preview.coo.ee has none for `m3-catalog` as of 3.121.0) the call fails, and
+   with `renderer: "export"` each layer comes back with no operations. There,
+   measure with `differences` alone (it uses the PNG export), read the regions
+   and their layers, write the alignment yourself, and say that layer matching
+   was not available.
 6. **Apply what you agree with** through `ui_builder_apply` (quote the current
    `baseRevision`), one layer or a few at a time so collaborators see progress,
    then compare again — a layer that lines up reports `alreadyAligned` — and
@@ -776,6 +941,60 @@ controls are absent merely because the central canvas resembles the target.
   never implies an invisible permanent service. A delegated task belongs to
   the current agent task unless the runtime explicitly provides durable
   automations; it must not promise notification after that task is closed.
+
+## Explore alternatives on branches
+
+When the person wants options ("try a compact and a roomy header"), or you would
+otherwise edit over somebody working live, branch rather than copy:
+
+1. **Branch once per idea from the same revision.** Note the parent's current
+   revision once, then call `ui_builder_branch_design` with `designId`, that
+   `revision` (so an edit landing between calls cannot give the alternatives
+   different baselines), a `name` that says what the alternative is, and your
+   own `branchId` so a retry is idempotent. A branch is a design with its own id:
+   edit it with `ui_builder_apply` exactly as above. Branches of a branch are
+   refused.
+2. **Show them side by side in one picture.** `ui_builder_compare_branches`
+   renders the parent's head and each open branch into one numbered contact
+   sheet (a short-lived https link) with what each changes. Post the picture
+   and the numbered list; never describe the alternatives from their JSON.
+3. **Let the person choose.** `ui_builder_pick_branch` shows a picker or form
+   where the host has one. If it returns `ask-in-chat`, post its list and
+   picture and wait for their number. Never pick for them, and treat `declined`
+   as an answer.
+4. **Merge the choice.** `ui_builder_merge_branch` with `dryRun: true` first,
+   read the per-command report, then merge. Its open siblings are archived for
+   you; `ui_builder_archive_branch` drops one without merging.
+
+## Approval and handoff to code
+
+A design is done when a person approves a revision, not when you stop editing.
+The record lives beside the design, so the coding agent can pick it up later
+without the chat.
+
+- **Wait for approval instead of asking again.** Tell the person the link and
+  revision, then `ui_builder_await_decision` with `designId`, that `revision`
+  and the `afterSequence` you last saw (0 the first time). Without `revision`
+  a verdict on an older revision would answer the wait. It returns when a
+  *person* approves or rejects that revision, or `timedOut` after
+  `waitSeconds`. If you edit after asking, the person is looking at a new
+  revision: say so and wait on that one. `waitSeconds: 0` is a
+  cheap poll for a routine that checks back later. Quote the reply's `sequence`
+  next time. Your own `ui_builder_record_decision` is recorded as an agent's
+  and does not answer a person's wait; never record an approval on their
+  behalf.
+- **Link the implementation.** When code lands, `ui_builder_set_implementation`
+  with the PR URL, its `status` and the design `revision` it implements. After
+  you have rendered the PR's `@Preview`s and compared them with the design, add
+  `previewMatch` (`match`, `mismatch` or `unknown`, with an evidence link). It
+  replaces the whole record.
+- **Start the code side from the design.** In a coding session,
+  `ui_builder_implementation_status` returns in one call the revision, its links,
+  the implementation PR and whether its previews matched, the latest verdict, and
+  the Compose export with its diagnostics. From a PR,
+  `ui_builder_find_design_for_pr` finds the designs it implements. Implement the
+  approved revision, not whatever the design holds now: if `summary` says the
+  revision moved on or was never approved, say so before writing code.
 
 ## Keeping a design
 

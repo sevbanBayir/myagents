@@ -26,6 +26,16 @@ Commands:
   list     List discovered previews
   render   Render previews; with --output copies a single match to disk
   a11y     Render previews and print ATF accessibility findings
+  review   Review previews against the catalog's design guidelines (2.46.0+;
+           see design-guidelines.md). --backend auto, the default, picks
+           prompt inside an agent session: you judge each
+           build/compose-previews/review/<id>/request.md by writing
+           <id>/reply.json, and it exits 3 while replies are missing.
+           Otherwise OpenRouter with a usable key; --backend openai
+           --base-url <url> --model <id> for an OpenAI-compatible endpoint
+  guidelines  The same check through OpenRouter, with a key from
+           COMPOSE_PREVIEW_OPENROUTER_KEY or `guidelines key set`;
+           `guidelines models` lists the --model ids with prices
   extensions run a11y-annotated-preview.render
            One-shot a11y hierarchy + ATF + annotated overlay render
   doctor   Verify Java 17+ + project compatibility (run before Setup)
@@ -56,7 +66,14 @@ OSC 9;4 terminal progress (native taskbar/tab progress bar) is on by default
 in a TTY and auto-disables when stdout is piped. Textual progress lines are
 opt-in via `--progress`.
 
-Exit codes: `0` success, `1` build failure, `2` render failure, `3` no previews.
+Exit codes for the render commands (`show`, `list`, `render`): `0` success,
+`1` build failure, `2` render failure, `3` no previews.
+
+`review` and `guidelines` use their own: `0` every request answered (or no
+catalog rules), `1` findings at `--fail-on`, `2` a failed model request, an
+unreadable reply or a build failure, and for `review` only, `3` requests are
+waiting for replies. A filter that matches nothing exits `0` with nothing
+checked.
 
 `--json` output per entry includes the full `PreviewParams` (device, widthDp,
 heightDp, fontScale, uiMode, …), the absolute `pngPath`, the `sha256` of
